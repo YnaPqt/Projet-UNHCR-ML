@@ -46,27 +46,27 @@ Chaque variable peut prendre les valeurs suivantes:
 
 2. **Types de population** : Ils sont identifiés par les codes suivants:
 
-*   REF – Réfugié (Refugee)
-*   ROC – Personnes dans une situation semblable à celle des réfugiés (People in refugee-like situation)
-* ASY – Demandeurs d'asile (Asylum-seekers)
-* OIP – Autres personnes ayant besoin d'une protection internationale (Other people in need of international protection)
-* IDP – Personnes déplacées à l'intérieur de leur propre pays (Internally displaced persons)
-* IOC – Personnes dans une situation semblable à celle des déplacés internes (People in IDP-like situation)
-* STA – Personnes apatrides (Stateless people)
-* OOC – Autres personnes necesitant l'aide du HCR (Others of concern)
-* HST – Communauté d'accueil (Host community)
+    * REF – Réfugié (Refugee)
+    * ROC – Personnes dans une situation semblable à celle des réfugiés (People in refugee-like situation)
+    * ASY – Demandeurs d'asile (Asylum-seekers)
+    * OIP – Autres personnes ayant besoin d'une protection internationale (Other people in need of international protection)
+    * IDP – Personnes déplacées à l'intérieur de leur propre pays (Internally displaced persons)
+    * IOC – Personnes dans une situation semblable à celle des déplacés internes (People in IDP-like situation)
+    * STA – Personnes apatrides (Stateless people)
+    * OOC – Autres personnes necesitant l'aide du HCR (Others of concern)
+    * HST – Communauté d'accueil (Host community)
 
 3. **Solutions :** Elles sont représentées par les codes suivants:
 
-* RET – Réfugiés de retour / rapatriés (Returned refugees)
-* RST – Réfugiés réinstallés (Resettled refugees)
-* NAT – Réfugiés naturalisés (Naturalized refugees)
-* RDP – Personnes déplacées internes de retour (Returned IDPs)
+    * RET – Réfugiés de retour / rapatriés (Returned refugees)
+    * RST – Réfugiés réinstallés (Resettled refugees)
+    * NAT – Réfugiés naturalisés (Naturalized refugees)
+    * RDP – Personnes déplacées internes de retour (Returned IDPs)
 
 4. **Pays/territoire d'asile et d'origine :** La liste complète des pays de l'ONU est disponible sur la page méthodologique de la Division de statistique des Nations Unies (UNSD). Les codes pays ISO3 sont inclus. Le HCR utilise également les codes ISO3 non standard suivants:
 
-* UKN pour Divers/Inconnu (Various/unknown)
-* STA pour Apatride (Stateless)
+    * UKN pour Divers/Inconnu (Various/unknown)
+    * STA pour Apatride (Stateless)
 
 ## **Jeux de données sur les demandes d'asile et les décisions**
 
