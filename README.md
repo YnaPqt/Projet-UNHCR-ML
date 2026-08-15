@@ -1,5 +1,5 @@
 # Projet-UNHCR-ML
-Analyses des données collectées par UNHCR concernant les personnes déplacées de force ou apatrides
+* ### Analyses des données collectées par UNHCR concernant les personnes déplacées de force ou apatrides
 
 ## Qu’est-ce que l’UNHCR?
 
@@ -114,7 +114,7 @@ Dans les ensembles de données sur les demandes d'asile et les décisions d'asil
 * **P** – Personnes (Persons)
 * **C** – Dossiers / Cas (Cases)
 
-# **Données démographiques**
+## **Données démographiques**
 
 **Dans les données démographiques, les paramètres ont les valeurs suivantes:**
 
