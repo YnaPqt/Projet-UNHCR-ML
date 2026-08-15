@@ -3,6 +3,8 @@ Analyses des données collectées par UNHCR concernant les personnes déplacées
 
 ## Qu’est-ce que l’UNHCR?
 
+unhcr-logo.png
+
 * **Identité :** Fondée par l'ONU le 14 décembre 1950, l'UNHCR ( United Nations Human Rights Council)  est une agence des Nations Unies pour les réfugiés. Elle a pour mission de garantir le droit d'asile et de trouver un refuge sûr pour ceux qui fuient la guerre, la violence, les persécutions ou les catastrophes.
 
 * **Bénéficiaires :** L'agence protège et assiste les réfugiés, les demandeurs d'asile, les déplacés internes et les apatrides.
