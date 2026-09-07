@@ -29,8 +29,8 @@ Chaque variable peut prendre les valeurs suivantes:
 
 2. **Types de population** : Ils sont identifiés par les codes suivants:
 
-*   REF – Réfugié (Refugee)
-*   ROC – Personnes dans une situation semblable à celle des réfugiés (People in refugee-like situation)
+* REF – Réfugié (Refugee)
+* ROC – Personnes dans une situation semblable à celle des réfugiés (People in refugee-like situation)
 * ASY – Demandeurs d'asile (Asylum-seekers)
 * OIP – Autres personnes ayant besoin d'une protection internationale (Other people in need of international protection)
 * IDP – Personnes déplacées à l'intérieur de leur propre pays (Internally displaced persons)
