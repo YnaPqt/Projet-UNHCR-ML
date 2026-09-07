@@ -1,0 +1,233 @@
+﻿0,id,code,iso,iso2,name,nameOrigin,nameLong,nameShort,nameFormal,nationality,majorArea,region,nameFr,majorAreaFr,regionFr
+1,2,AFG,AFG,AF,Afghanistan,Afghanistan,Afghanistan,Afghanistan,the Islamic State of Afghanistan,Afghan,Asia,Southern Asia,Afghanistan,Asie,Sud de l'Asie centrale
+1,3,ALB,ALB,AL,Albania,Albania,Albania,Albania,the Republic of Albania,Albanian,Europe,Southern Europe,Albanie,Europe,Europe australe
+1,4,ALG,DZA,DZ,Algeria,Algeria,Algeria,Algeria,the People's Democratic Republic of Algeria,Algerian,Africa,Northern Africa,Alg,Afrique,Afrique septentrionale
+1,5,AND,AND,AD,Andorra,Andorra,Andorra,Andorra,the Principality of Andorra,Andorran,Europe,Southern Europe,Andorre,Europe,Europe australe
+1,6,ANG,AGO,AO,Angola,Angola,Angola,Angola,the Republic of Angola,Angolan,Africa,Middle Africa,Angola,Afrique,Afrique australe
+1,223,AIA,AIA,AI,Anguilla,Anguilla,,Anguilla,,,Latin America and the Caribbean,Caribbean,Anguilla,,
+1,7,ANT,ATG,AG,Antigua and Barbuda,Antigua and Barbuda,Antigua and Barbuda,Antigua and Barbuda,Antigua and Barbuda,of Antigua and Barbuda,Latin America and the Caribbean,Caribbean,Antigua-et-Barbuda,Am,Cara
+1,9,ARG,ARG,AR,Argentina,Argentina,Argentina,Argentina,the Argentine Republic,Argentine,Latin America and the Caribbean,South America,Argentine,Am,Am
+1,10,ARM,ARM,AM,Armenia,Armenia,Armenia,Armenia,the Republic of Armenia,Armenian,Asia,Western Asia,Arm,Asie,Asie occidentale
+1,224,ABW,ABW,AW,Aruba,Aruba,Aruba,Aruba,,,Latin America and the Caribbean,Caribbean,Aruba,Am,Cara
+1,11,AUL,AUS,AU,Australia,Australia,Australia,Australia,Australia,Australian,Oceania,Australia-New Zealand,Australie,Oc,Australie-Nouvelle-Z
+1,12,AUS,AUT,AT,Austria,Austria,Austria,Austria,the Republic of Austria,Austrian,Europe,Western Europe,Autriche,Europe,Europe occidentale
+1,13,AZE,AZE,AZ,Azerbaijan,Azerbaijan,Azerbaijan,Azerbaijan,the Azerbaijani Republic,Azerbaijani,Asia,Western Asia,Azerba,Asie,Asie occidentale
+1,21,BHS,BHS,BS,Bahamas,Bahamas,Bahamas,Bahamas,the Commonwealth of the Bahamas,Bahamian,Latin America and the Caribbean,Caribbean,Bahamas,Am,Cara
+1,14,BAH,BHR,BH,Bahrain,Bahrain,Bahrain,Bahrain,the State of Bahrain,Bahraini,Asia,Western Asia,Bahre,Asie,Asie occidentale
+1,20,BGD,BGD,BD,Bangladesh,Bangladesh,Bangladesh,Bangladesh,the People's Republic of Bangladesh,of Bangladesh,Asia,Southern Asia,Bangladesh,Asie,Sud de l'Asie centrale
+1,15,BAR,BRB,BB,Barbados,Barbados,Barbados,Barbados,Barbados,Barbadian,Latin America and the Caribbean,Caribbean,Barbade,Am,Cara
+1,24,BLR,BLR,BY,Belarus,Belarus,Belarus,Belarus,the Republic of Belarus,Belarusian,Europe,Eastern Europe,B,Europe,Europe orientale
+1,17,BEL,BEL,BE,Belgium,Belgium,Belgium,Belgium,the Kingdom of Belgium,Belgian,Europe,Western Europe,Belgique,Europe,Europe occidentale
+1,31,BZE,BLZ,BZ,Belize,Belize,Belize,Belize,Belize,Belizean,Latin America and the Caribbean,Central America,Belize,Am,Am
+1,18,BEN,BEN,BJ,Benin,Benin,Benin,Benin,the Republic of Benin,Beninese,Africa,Western Africa,B,Afrique,Afrique occidentale
+1,19,BER,BMU,BM,Bermuda,Bermuda,Bermuda,Bermuda,,,Northern America,Northern America,Bermudes,Am,Am
+1,22,BHU,BTN,BT,Bhutan,Bhutan,Bhutan,Bhutan,the Kingdom of Bhutan,Bhutanese,Asia,Southern Asia,Bhoutan,Asie,Sud de l'Asie centrale
+1,25,BOL,BOL,BO,Bolivia (Plurinational State of),Bolivia (Plurinational State of),Plurinational State of Bolivia,Bolivia (Plurinational State of),Plurinational State of Bolivia,Bolivian,Latin America and the Caribbean,South America,Bolivie,Am,Am
+1,229,BES,BES,,"Bonaire, Saint Eustatius and Saba","Bonaire, Saint Eustatius and Saba","Bonaire, Saint Eustatius and Saba","Bonaire, Saint Eustatius and Saba","Bonaire, Saint Eustatius and Saba",,Latin America and the Caribbean,Caribbean,Bonaire,,
+1,29,BSN,BIH,BA,Bosnia and Herzegovina,Bosnia and Herzegovina,Bosnia and Herzegovina,Bosnia and Herzegovina,the Republic of Bosnia and Herzegovina,of Bosnia and Herzegovina,Europe,Southern Europe,Bosnie-Herz,Europe,Europe australe
+1,26,BOT,BWA,BW,Botswana,Botswana,Botswana,Botswana,the Republic of Botswana,of Botswana,Africa,Southern Africa,Botswana,Afrique,Afrique australe
+1,238,BVT,BVT,BV,Bouvet Island,,,Bouvet Island,,,,,,,
+1,27,BRA,BRA,BR,Brazil,Brazil,Brazil,Brazil,the Federative Republic of Brazil,Brazilian,Latin America and the Caribbean,South America,Br,Am,Am
+1,225,BVI,VGB,VG,British Virgin Islands,British Virgin Islands,,British Virgin Islands,,,Latin America and the Caribbean,Caribbean,Iles Vierges britaniques,,
+1,28,BRU,BRN,BN,Brunei Darussalam,Brunei Darussalam,Brunei Darussalam,Brunei Darussalam,Brunei and Darussalam,of Brunei Darussalam,Asia,South-eastern Asia,Brun,Asie,Asie du Sud-Est
+1,30,BUL,BGR,BG,Bulgaria,Bulgaria,Bulgaria,Bulgaria,the Republic of Bulgaria,Bulgarian,Europe,Eastern Europe,Bulgarie,Europe,Europe orientale
+1,23,BKF,BFA,BF,Burkina Faso,Burkina Faso,Burkina Faso,Burkina Faso,Burkina Faso,of Burkina Faso,Africa,Western Africa,Burkina Faso,Afrique,Afrique occidentale
+1,16,BDI,BDI,BI,Burundi,Burundi,Burundi,Burundi,the Republic of Burundi,Burundian,Africa,Eastern Africa,Burundi,Afrique,Afrique orientale
+1,47,CVI,CPV,CV,Cabo Verde,Cabo Verde,Cape Verde,Cabo Verde,the Republic of Cape Verde,Cape Verdean,Africa,Western Africa,Cap-Vert,Afrique,Afrique occidentale
+1,32,CAM,KHM,KH,Cambodia,Cambodia,Cambodia,Cambodia,The Kingdom of Cambodia,Cambodian,Asia,South-eastern Asia,Cambodge,Asie,Asie du Sud-Est
+1,39,CMR,CMR,CM,Cameroon,Cameroon,Cameroon,Cameroon,the Republic of Cameroon,Cameroonian,Africa,Middle Africa,Cameroun,Afrique,Afrique australe
+1,33,CAN,CAN,CA,Canada,Canada,Canada,Canada,Canada,Canadian,Northern America,Northern America,Canada,Am,Am
+1,35,CAY,CYM,KY,Cayman Islands,Cayman Islands,Cayman Islands,Cayman Islands,,,Latin America and the Caribbean,Caribbean,Iles Ca,Am,Cara
+1,34,CAR,CAF,CF,Central African Rep.,Central African Rep.,Central African Republic,Central African Rep.,the Central African Republic,of the Central African Republic,Africa,Middle Africa,R,Afrique,Afrique australe
+1,36,CHD,TCD,TD,Chad,Chad,Chad,Chad,the Republic of Chad,Chadian,Africa,Middle Africa,Tchad,Afrique,Afrique australe
+1,38,CHL,CHL,CL,Chile,Chile,Chile,Chile,the Republic of Chile,Chilean,Latin America and the Caribbean,South America,Chili,Am,Am
+1,37,CHI,CHN,CN,China,China,China,China,the People's Republic of China,Chinese,Asia,Eastern Asia,Chine,Asie,Asie orientale
+1,82,HKG,HKG,HK,"China, Hong Kong SAR","China, Hong Kong SAR",Hong Kong Special Administrative Region,"China, Hong Kong SAR",,,Asia,Eastern Asia,"Hong Kong, RAS de la R",Asie,Asie orientale
+1,116,MAC,MAC,MO,"China, Macao SAR","China, Macao SAR",Macao Special Administrative Region,"China, Macao SAR",,,Asia,Eastern Asia,"Macao, RAS de la R",Asie,Asie orientale
+1,44,COL,COL,CO,Colombia,Colombia,Colombia,Colombia,the Republic of Colombia,Colombian,Latin America and the Caribbean,South America,Colombie,Am,Am
+1,42,COI,COM,KM,Comoros,Comoros,Comoros,Comoros,the Islamic Federal Republic of the Comoros,Comorian,Africa,Eastern Africa,Comores,Afrique,Afrique orientale
+1,40,COB,COG,CG,Congo,Congo,Congo,Congo,the Republic of the Congo,Congolese,Africa,Middle Africa,Congo,Afrique,Afrique australe
+1,43,COK,COK,CK,Cook Islands,Cook Islands,Cook Islands,Cook Islands,the Cook Islands,of the Cook Islands,Oceania,Polynesia,Iles Cook,Oc,Polyn
+1,45,COS,CRI,CR,Costa Rica,Costa Rica,Costa Rica,Costa Rica,the Republic of Costa Rica,Costa Rican,Latin America and the Caribbean,Central America,Costa Rica,Am,Am
+1,87,ICO,CIV,CI,Cote d'Ivoire,Cote d'Ivoire,Cote d'Ivoire,Cote d'Ivoire,the Republic of Cote d'Ivoire,Ivorian,Africa,Western Africa,C,Afrique,Afrique occidentale
+1,290,CRB,,,CRB,,,,,,,,,,
+1,84,HRV,HRV,HR,Croatia,Croatia,Croatia,Croatia,the Republic of Croatia,Croatian,Europe,Southern Europe,Croatie,Europe,Europe australe
+1,46,CUB,CUB,CU,Cuba,Cuba,Cuba,Cuba,the Republic of Cuba,Cuban,Latin America and the Caribbean,Caribbean,Cuba,Am,Cara
+1,390,CUR,,,CUR,,,,,,,,,,
+1,254,CUW,CUW,CW,Curacao ,Curacao ,Curacao,Curacao ,,,Latin America and the Caribbean,Caribbean,Cura,Am,Cara
+1,48,CYP,CYP,CY,Cyprus,Cyprus,Cyprus,Cyprus,the Republic of Cyprus,Cypriot,Asia,Western Asia,Chypre,Asie,Asie occidentale
+1,49,CZE,CZE,CZ,Czechia,Czechia,Czechia,Czechia,Czechia,Czechia,Europe,Eastern Europe,R,Europe,Europe orientale
+1,103,KRN,PRK,KP,Dem. People's Rep. of Korea,Dem. People's Rep. of Korea,Democratic People's Republic of Korea,Dem. People's Rep. of Korea,the Democratic People's Republic of Korea,of the Democratic People's Republic of Korea,Asia,Eastern Asia,R,Asie,Asie orientale
+1,41,COD,COD,CD,Dem. Rep. of the Congo,Dem. Rep. of the Congo,Democratic Republic of the Congo,Dem. Rep. of the Congo,the Democratic Republic of the Congo,of the Democratic Republic of the Congo,Africa,Middle Africa,R,Afrique,Afrique australe
+1,50,DEN,DNK,DK,Denmark,Denmark,Denmark,Denmark,the Kingdom of Denmark,Danish,Europe,Northern Europe,Danemark,Europe,Europe septentrionale
+1,51,DJB,DJI,DJ,Djibouti,Djibouti,Djibouti,Djibouti,the Republic of Djibouti,of Djibouti,Africa,Eastern Africa,Djibouti,Afrique,Afrique orientale
+1,52,DMA,DMA,DM,Dominica,Dominica,Dominica,Dominica,the Commonwealth of Dominica,of Dominica,Latin America and the Caribbean,Caribbean,Dominique,Am,Cara
+1,53,DOM,DOM,DO,Dominican Rep.,Dominican Rep.,Dominican Republic,Dominican Rep.,the Dominican Republic,Dominican,Latin America and the Caribbean,Caribbean,R,Am,Cara
+1,54,ECU,ECU,EC,Ecuador,Ecuador,Ecuador,Ecuador,the Republic of Ecuador,Ecuadorian,Latin America and the Caribbean,South America,Equateur,Am,Am
+1,8,ARE,EGY,EG,Egypt,Egypt,Egypt,Egypt,the Arab Republic of Egypt,Egyptian,Africa,Northern Africa,Egypte,Afrique,Afrique septentrionale
+1,162,SAL,SLV,SV,El Salvador,El Salvador,El Salvador,El Salvador,the Republic of El Salvador,Salvadoran,Latin America and the Caribbean,Central America,El Salvador,Am,Am
+1,55,EGU,GNQ,GQ,Equatorial Guinea,Equatorial Guinea,Equatorial Guinea,Equatorial Guinea,the Republic of Equatorial Guinea,of Equatorial Guinea,Africa,Middle Africa,Guin,Afrique,Afrique australe
+1,56,ERT,ERI,ER,Eritrea,Eritrea,Eritrea,Eritrea,Eritrea,Eritrean,Africa,Eastern Africa,Erythr,Afrique,Afrique orientale
+1,57,EST,EST,EE,Estonia,Estonia,Estonia,Estonia,the Republic of Estonia,Estonian,Europe,Northern Europe,Estonie,Europe,Europe septentrionale
+1,182,SWA,SWZ,SZ,Eswatini,Eswatini,Eswatini,Eswatini,the Kingdom of Eswatini,Eswatini,Africa,Southern Africa,Eswatini,Afrique,Afrique australe
+1,58,ETH,ETH,ET,Ethiopia,Ethiopia,Ethiopia,Ethiopia,the Federal Democratic Republic of Ethiopia,Ethiopian,Africa,Eastern Africa,Ethiopie,Afrique,Afrique orientale
+1,65,FRO,FRO,FO,Faeroe Islands,Faeroe Islands,Faeroe Islands,Faeroe Islands,,,Europe,Northern Europe,Iles F,Europe,Europe septentrionale
+1,60,FIJ,FJI,FJ,Fiji,Fiji,Fiji,Fiji,the Republic of Fiji,of Fiji,Oceania,Melanesia,Fidji,Oc,M
+1,61,FIN,FIN,FI,Finland,Finland,Finland,Finland,the Republic of Finland,Finnish,Europe,Northern Europe,Finlande,Europe,Europe septentrionale
+1,64,FRA,FRA,FR,France,France,France,France,the French Republic,French,Europe,Western Europe,France,Europe,Europe occidentale
+1,59,FGU,GUF,GF,French Guiana,French Guiana,French Guiana,French Guiana,,,Latin America and the Caribbean,South America,Guyane Fran,Am,Am
+1,63,FPO,PYF,PF,French Polynesia,French Polynesia,French Polynesia,French Polynesia,,,Oceania,Polynesia,Polyn,Oc,Polyn
+1,67,GAB,GAB,GA,Gabon,Gabon,Gabon,Gabon,the Gabonese Republic,Gabonese,Africa,Middle Africa,Gabon,Afrique,Afrique australe
+1,68,GAM,GMB,GM,Gambia,Gambia,Gambia,Gambia,The Republic of Gambia,Gambian,Africa,Western Africa,Gambie,Afrique,Afrique occidentale
+1,71,GEO,GEO,GE,Georgia,Georgia,Georgia,Georgia,Georgia,Georgian,Asia,Western Asia,G,Asie,Asie occidentale
+1,72,GFR,DEU,DE,Germany,Germany,Germany,Germany,the Federal Republic of Germany,German,Europe,Western Europe,Allemagne,Europe,Europe occidentale
+1,73,GHA,GHA,GH,Ghana,Ghana,Ghana,Ghana,the Republic of Ghana,Ghanaian,Africa,Western Africa,Ghana,Afrique,Afrique occidentale
+1,74,GIB,GIB,GI,Gibraltar,Gibraltar,Gibraltar,Gibraltar,,,Europe,Southern Europe,Gibraltar,Europe,Europe australe
+1,76,GRE,GRC,GR,Greece,Greece,Greece,Greece,the Hellenic Republic,Greek,Europe,Southern Europe,Gr,Europe,Europe australe
+1,253,GRL,GRL,GL,Greenland,Greenland,,Greenland,,,Northern America,Northern America,,,
+1,77,GRN,GRD,GD,Grenada,Grenada,Grenada,Grenada,Grenada,Grenadian,Latin America and the Caribbean,Caribbean,Grenade,Am,Cara
+1,227,GLP,GLP,GP,Guadeloupe,Guadeloupe,,Guadeloupe,,,Latin America and the Caribbean,Caribbean,,,
+1,232,GUM,GUM,GU,Guam,Guam,,Guam,,,Oceania,Micronesia,,,
+1,78,GUA,GTM,GT,Guatemala,Guatemala,Guatemala,Guatemala,the Republic of Guatemala,Guatemalan,Latin America and the Caribbean,Central America,Guatemala,Am,Am
+1,79,GUI,GIN,GN,Guinea,Guinea,Guinea,Guinea,the Republic of Guinea,Guinean,Africa,Western Africa,Guin,Afrique,Afrique occidentale
+1,75,GNB,GNB,GW,Guinea-Bissau,Guinea-Bissau,Guinea-Bissau,Guinea-Bissau,the Republic of Guinea-Bissau,of Guinea-Bissau,Africa,Western Africa,Guin,Afrique,Afrique occidentale
+1,80,GUY,GUY,GY,Guyana,Guyana,Guyana,Guyana,the Republic of Guyana,Guyanese,Latin America and the Caribbean,South America,Guyana,Am,Am
+1,81,HAI,HTI,HT,Haiti,Haiti,Haiti,Haiti,the Republic of Haiti,Haitian,Latin America and the Caribbean,Caribbean,Ha,Am,Cara
+1,205,VAT,VAT,VA,Holy See,Holy See,Holy See (the),Holy See,the Holy See,of the Holy See,Europe,Southern Europe,Saint-Si,Europe,Europe australe
+1,83,HON,HND,HN,Honduras,Honduras,Honduras,Honduras,the Republic of Honduras,Honduran,Latin America and the Caribbean,Central America,Honduras,Am,Am
+1,85,HUN,HUN,HU,Hungary,Hungary,Hungary,Hungary,the Republic of Hungary,Hungarian,Europe,Eastern Europe,Hongrie,Europe,Europe orientale
+1,86,ICE,ISL,IS,Iceland,Iceland,Iceland,Iceland,the Republic of Iceland,Icelandic,Europe,Northern Europe,Islande,Europe,Europe septentrionale
+1,88,IND,IND,IN,India,India,India,India,the Republic of India,Indian,Asia,Southern Asia,Inde,Asie,Sud de l'Asie centrale
+1,89,INS,IDN,ID,Indonesia,Indonesia,Indonesia,Indonesia,the Republic of Indonesia,Indonesian,Asia,South-eastern Asia,Indon,Asie,Asie du Sud-Est
+1,91,IRN,IRN,IR,Iran (Islamic Rep. of),Iran (Islamic Rep. of),Islamic Republic of Iran,Iran (Islamic Rep. of),the Islamic Republic of Iran,Iranian,Asia,Southern Asia,R,Asie,Sud de l'Asie centrale
+1,92,IRQ,IRQ,IQ,Iraq,Iraq,Iraq,Iraq,the Republic of Iraq,Iraqi,Asia,Western Asia,Iraq,Asie,Asie occidentale
+1,90,IRE,IRL,IE,Ireland,Ireland,Ireland,Ireland,Ireland,Irish,Europe,Northern Europe,Irlande,Europe,Europe septentrionale
+1,93,ISR,ISR,IL,Israel,Israel,Israel,Israel,the State of Israel,Israeli,Asia,Western Asia,Isra,Asie,Asie occidentale
+1,94,ITA,ITA,IT,Italy,Italy,Italy,Italy,the Italian Republic,Italian,Europe,Southern Europe,Italie,Europe,Europe australe
+1,95,JAM,JAM,JM,Jamaica,Jamaica,Jamaica,Jamaica,Jamaica,Jamaican,Latin America and the Caribbean,Caribbean,Jama,Am,Cara
+1,97,JPN,JPN,JP,Japan,Japan,Japan,Japan,Japan,Japanese,Asia,Eastern Asia,Japon,Asie,Asie orientale
+1,96,JOR,JOR,JO,Jordan,Jordan,Jordan,Jordan,the Hashemite Kingdom of Jordan,Jordanian,Asia,Western Asia,Jordanie,Asie,Asie occidentale
+1,98,KAZ,KAZ,KZ,Kazakhstan,Kazakhstan,Kazakhstan,Kazakhstan,the Republic of Kazakstan,Kazak,Asia,Central Asia,Kazakhstan,Asie,Sud de l'Asie centrale
+1,99,KEN,KEN,KE,Kenya,Kenya,Kenya,Kenya,the Republic of Kenya,Kenyan,Africa,Eastern Africa,Kenya,Afrique,Afrique orientale
+1,101,KIR,KIR,KI,Kiribati,Kiribati,Kiribati,Kiribati,Kiribati,of Kiribati,Oceania,Micronesia,Kiribati,Oc,Micron
+1,104,KUW,KWT,KW,Kuwait,Kuwait,Kuwait,Kuwait,the State of Kuwait,Kuwaiti,Asia,Western Asia,Kowe,Asie,Asie occidentale
+1,100,KGZ,KGZ,KG,Kyrgyzstan,Kyrgyzstan,Kyrgyzstan,Kyrgyzstan,the Kyrgyz Republic,Kyrgyz,Asia,Central Asia,Kirghizistan,Asie,Sud de l'Asie centrale
+1,105,LAO,LAO,LA,Lao People's Dem. Rep.,Lao People's Dem. Rep.,Lao People's Democratic Republic,Lao People's Dem. Rep.,the Lao People's Democratic Republic,Lao,Asia,South-eastern Asia,R,Asie,Asie du Sud-Est
+1,115,LVA,LVA,LV,Latvia,Latvia,Latvia,Latvia,the Republic of Latvia,Latvian,Europe,Northern Europe,Lettonie,Europe,Europe septentrionale
+1,109,LEB,LBN,LB,Lebanon,Lebanon,Lebanon,Lebanon,the Lebanese Republic,Lebanese,Asia,Western Asia,Liban,Asie,Asie occidentale
+1,110,LES,LSO,LS,Lesotho,Lesotho,Lesotho,Lesotho,the Kingdom of Lesotho,of Lesotho,Africa,Southern Africa,Lesotho,Afrique,Afrique australe
+1,106,LBR,LBR,LR,Liberia,Liberia,Liberia,Liberia,the Republic of Liberia,Liberian,Africa,Western Africa,Lib,Afrique,Afrique occidentale
+1,107,LBY,LBY,LY,Libya,Libya,Libyan Arab Jamahiriya,Libya,the Socialist People's Libyan Arab Jamahiriya,Libyan,Africa,Northern Africa,Libye,Afrique,Afrique septentrionale
+1,111,LIE,LIE,LI,Liechtenstein,Liechtenstein,Liechtenstein,Liechtenstein,the Principality of Liechtenstein,of Liechtenstein,Europe,Western Europe,Liechtenstein,Europe,Europe occidentale
+1,113,LTU,LTU,LT,Lithuania,Lithuania,Lithuania,Lithuania,the Republic of Lithuania,Lithuanian,Europe,Northern Europe,Lituanie,Europe,Europe septentrionale
+1,114,LUX,LUX,LU,Luxembourg,Luxembourg,Luxembourg,Luxembourg,the Grand Duchy of Luxembourg,of Luxembourg,Europe,Western Europe,Luxembourg,Europe,Europe occidentale
+1,117,MAD,MDG,MG,Madagascar,Madagascar,Madagascar,Madagascar,the Republic of Madagascar,Malagasy,Africa,Eastern Africa,Madagascar,Afrique,Afrique orientale
+1,128,MLW,MWI,MW,Malawi,Malawi,Malawi,Malawi,the Republic of Malawi,Malawian,Africa,Eastern Africa,Malawi,Afrique,Afrique orientale
+1,127,MLS,MYS,MY,Malaysia,Malaysia,Malaysia,Malaysia,Malaysia,Malaysian,Asia,South-eastern Asia,Malaisie,Asie,Asie du Sud-Est
+1,123,MDV,MDV,MV,Maldives,Maldives,Maldives,Maldives,the Republic of Maldives,Maldivian,Asia,Southern Asia,Maldives,Asie,Sud de l'Asie centrale
+1,126,MLI,MLI,ML,Mali,Mali,Mali,Mali,the Republic of Mali,Malian,Africa,Western Africa,Mali,Afrique,Afrique occidentale
+1,132,MTA,MLT,MT,Malta,Malta,Malta,Malta,the Republic of Malta,Maltese,Europe,Southern Europe,Malte,Europe,Europe australe
+1,125,MHL,MHL,MH,Marshall Islands,Marshall Islands,Marshall Islands,Marshall Islands,the Republic of the Marshall Islands,Oceania,Oceania,Micronesia,Iles Marshall,Oc,Micron
+1,118,MAR,MTQ,MQ,Martinique,Martinique,Martinique,Martinique,,,Latin America and the Caribbean,Caribbean,Martinique,Am,Cara
+1,119,MAU,MRT,MR,Mauritania,Mauritania,Mauritania,Mauritania,the Islamic Republic of Mauritania,Mauritanian,Africa,Western Africa,Mauritanie,Afrique,Afrique occidentale
+1,134,MTS,MUS,MU,Mauritius,Mauritius,Mauritius,Mauritius,the Republic of Mauritius,Mauritian,Africa,Eastern Africa,Maurice,Afrique,Afrique orientale
+1,124,MEX,MEX,MX,Mexico,Mexico,Mexico,Mexico,the United Mexican States,Mexican,Latin America and the Caribbean,Central America,Mexique,Am,Am
+1,66,FSM,FSM,FM,Micronesia (Federated States of),Micronesia (Federated States of),Micronesia (Federated States of),Micronesia (Federated States of),the Federated States of Micronesia,of the Federated States of Micronesia,Oceania,Micronesia,Micron,Oc,Micron
+1,121,MCO,MCO,MC,Monaco,Monaco,Monaco,Monaco,the Principality of Monaco,Monegasque,Europe,Western Europe,Monaco,Europe,Europe occidentale
+1,129,MNG,MNG,MN,Mongolia,Mongolia,Mongolia,Mongolia,Mongolia,Mongolian,Asia,Eastern Asia,Mongolie,Asie,Asie orientale
+1,133,MNE,MNE,ME,Montenegro,Montenegro,The Republic of Montenegro,Montenegro,the Republic of Montenegro,,Europe,Southern Europe,Mont,Europe,Europe australe
+1,228,MSR,MSR,MS,Montserrat,Montserrat,,Montserrat,,,Latin America and the Caribbean,Caribbean,Montserrat,,
+1,130,MOR,MAR,MA,Morocco,Morocco,Morocco,Morocco,the Kingdom of Morocco,Moroccan,Africa,Northern Africa,Maroc,Afrique,Afrique septentrionale
+1,131,MOZ,MOZ,MZ,Mozambique,Mozambique,Mozambique,Mozambique,the Republic of Mozambique,Mozambican,Africa,Eastern Africa,Mozambique,Afrique,Afrique orientale
+1,135,MYA,MMR,MM,Myanmar,Myanmar,Myanmar,Myanmar,the Union of Myanmar,of Myanmar,Asia,South-eastern Asia,Myanmar,Asie,Asie du Sud-Est
+1,136,NAM,NAM,NA,Namibia,Namibia,Namibia,Namibia,the Republic of Namibia,Namibian,Africa,Southern Africa,Namibie,Afrique,Afrique australe
+1,144,NRU,NRU,NR,Nauru,Nauru,Nauru,Nauru,the Republic of Nauru,Nauruan,Oceania,Micronesia,Nauru,Oc,Micron
+1,137,NEP,NPL,NP,Nepal,Nepal,Nepal,Nepal,the Kingdom of Nepal,Nepalese,Asia,Southern Asia,N,Asie,Sud de l'Asie centrale
+1,138,NET,NLD,NL,Netherlands (Kingdom of the),Netherlands (Kingdom of the),Netherlands (Kingdom of the),Netherlands (Kingdom of the),the Kingdom of the Netherlands,Netherlands,Europe,Western Europe,Pays-Bas,Europe,Europe occidentale
+1,62,FNC,NCL,NC,New Caledonia,New Caledonia,New Caledonia,New Caledonia,,,Oceania,Melanesia,Nouvelle-Cal,Oc,M
+1,145,NZL,NZL,NZ,New Zealand,New Zealand,New Zealand,New Zealand,New Zealand,of New Zealand,Oceania,Australia-New Zealand,Nouvelle-Z,Oc,Australie-Nouvelle-Z
+1,140,NIC,NIC,NI,Nicaragua,Nicaragua,Nicaragua,Nicaragua,the Republic of Nicaragua,Nicaraguan,Latin America and the Caribbean,Central America,Nicaragua,Am,Am
+1,139,NGR,NER,NE,Niger,Niger,Niger,Niger,the Republic of the Niger,of the Niger,Africa,Western Africa,Niger,Afrique,Afrique occidentale
+1,141,NIG,NGA,NG,Nigeria,Nigeria,Nigeria,Nigeria,the Federal Republic of Nigeria,Nigerian,Africa,Western Africa,Nig,Afrique,Afrique occidentale
+1,142,NIU,NIU,NU,Niue,Niue,Niue,Niue,the Republic of Niue,of Nieu,Oceania,Polynesia,Niou,Oc,Polyn
+1,120,MCD,MKD,MK,North Macedonia,North Macedonia,North Macedonia,North Macedonia,North Macedonia,North Macedonia,Europe,Southern Europe,Ex-R,Europe,Europe australe
+1,233,MNP,MNP,MP,Northern Mariana Islands,Northern Mariana Islands,Northern Mariana Islands,Northern Mariana Islands,Northern Mariana Islands,,Oceania,Micronesia,,,
+1,143,NOR,NOR,NO,Norway,Norway,Norway,Norway,the Kingdom of Norway,Norwegian,Europe,Northern Europe,Norv,Europe,Europe septentrionale
+1,146,OMN,OMN,OM,Oman,Oman,Oman,Oman,the Sultanate of Oman,Omani,Asia,Western Asia,Oman,Asie,Asie occidentale
+1,147,PAK,PAK,PK,Pakistan,Pakistan,Pakistan,Pakistan,the Islamic Republic of Pakistan,of Pakistan,Asia,Southern Asia,Pakistan,Asie,Sud de l'Asie centrale
+1,152,PLW,PLW,PW,Palau,Palau,Palau,Palau,the Republic of Palau,of Palau,Oceania,Micronesia,Palaos (les),Oc,Micron
+1,148,PAN,PAN,PA,Panama,Panama,Panama,Panama,the Republic of Panama,Panamanian,Latin America and the Caribbean,Central America,Panama,Am,Am
+1,153,PNG,PNG,PG,Papua New Guinea,Papua New Guinea,Papua New Guinea,Papua New Guinea,Papua New Guinea,of Papua New Guinea,Oceania,Melanesia,Papouasie-Nouvelle-Guin,Oc,M
+1,149,PAR,PRY,PY,Paraguay,Paraguay,Paraguay,Paraguay,the Republic of Paraguay,Paraguayan,Latin America and the Caribbean,South America,Paraguay,Am,Am
+1,150,PER,PER,PE,Peru,Peru,Peru,Peru,the Republic of Peru,Peruvian,Latin America and the Caribbean,South America,P,Am,Am
+1,151,PHI,PHL,PH,Philippines,Philippines,Philippines,Philippines,the Republic of the Philippines,Philippine,Asia,South-eastern Asia,Philippines,Asie,Asie du Sud-Est
+1,154,POL,POL,PL,Poland,Poland,Poland,Poland,the Republic of Poland,Polish,Europe,Eastern Europe,Pologne,Europe,Europe orientale
+1,155,POR,PRT,PT,Portugal,Portugal,Portugal,Portugal,the Portuguese Republic,Portuguese,Europe,Southern Europe,Portugal,Europe,Europe australe
+1,156,PUE,PRI,PR,Puerto Rico,Puerto Rico,Puerto Rico,Puerto Rico,,,Latin America and the Caribbean,Caribbean,Puerto Rico,Am,Cara
+1,157,QAT,QAT,QA,Qatar,Qatar,Qatar,Qatar,the State of Qatar,of Qatar,Asia,Western Asia,Qatar,Asie,Asie occidentale
+1,102,KOR,KOR,KR,Rep. of Korea,Rep. of Korea,Republic of Korea,Rep. of Korea,the Republic of Korea,of the Republic of Korea,Asia,Eastern Asia,R,Asie,Asie orientale
+1,122,MDA,MDA,MD,Rep. of Moldova,Rep. of Moldova,Republic of Moldova,Rep. of Moldova,the Republic of Moldova,Moldovan,Europe,Eastern Europe,R,Europe,Europe orientale
+1,222,REU,REU,RE,Reunion,Reunion,,Reunion,,,Africa,Eastern Africa,,,
+1,158,ROM,ROU,RO,Romania,Romania,Romania,Romania,Romania,Romanian,Europe,Eastern Europe,Roumanie,Europe,Europe orientale
+1,160,RUS,RUS,RU,Russian Federation,Russian Federation,Russian Federation,Russian Federation,the Russian Federation,of the Russian Federation,Europe,Eastern Europe,F,Europe,Europe orientale
+1,161,RWA,RWA,RW,Rwanda,Rwanda,Rwanda,Rwanda,the Rwandese Republic,Rwandan,Africa,Eastern Africa,Rwanda,Afrique,Afrique orientale
+1,175,STK,KNA,KN,Saint Kitts and Nevis,Saint Kitts and Nevis,Saint Kitts and Nevis,Saint Kitts and Nevis,Saint Kitts and Nevis,of Saint Kitts and Nevis,Latin America and the Caribbean,Caribbean,Saint-Kitts-et-Nevis,Am,Cara
+1,108,LCA,LCA,LC,Saint Lucia,Saint Lucia,Saint Lucia,Saint Lucia,Saint Lucia,Saint Lucian,Latin America and the Caribbean,Caribbean,Sainte-Lucie,Am,Cara
+1,206,VCT,VCT,VC,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,Saint Vincent and the Grenadines,of Saint Vincent and the Grenadines,Latin America and the Caribbean,Caribbean,Saint-Vincent-et-les Grenadines,Am,Cara
+1,261,MAF,MAF,MF,Saint-Martin (French part),Saint-Martin (French part),,Saint-Martin (French part),,,Latin America and the Caribbean,Caribbean,,,
+1,249,SPM,SPM,PM,Saint-Pierre-et-Miquelon,Saint-Pierre-et-Miquelon,Saint-Pierre-et-Miquelon,Saint-Pierre-et-Miquelon,Saint-Pierre-et-Miquelon,,Northern America,Northen America,,,
+1,208,WES,WSM,WS,Samoa,Samoa,Samoa,Samoa,the Independent State of Western Samoa,Samoan,Oceania,Polynesia,Samoa,Oc,Polyn
+1,170,SMA,SMR,SM,San Marino,San Marino,San Marino,San Marino,the Republic of San Marino,of San Marino,Europe,Southern Europe,Saint-Marino,Europe,Europe australe
+1,176,STP,STP,ST,Sao Tome and Principe,Sao Tome and Principe,Sao Tome and Principe,Sao Tome and Principe,the Democratic Republic of Sao Tome and Principe,of Sao Tome and Principe,Africa,Middle Africa,Sao Tom,Afrique,Afrique australe
+1,163,SAU,SAU,SA,Saudi Arabia,Saudi Arabia,Saudi Arabia,Saudi Arabia,the Kingdom of Saudi Arabia,Saudi Arabian,Asia,Western Asia,Arabie saoudite,Asie,Asie occidentale
+1,165,SEN,SEN,SN,Senegal,Senegal,Senegal,Senegal,the Republic of Senegal,Senegalese,Africa,Western Africa,S,Afrique,Afrique occidentale
+1,164,SRB,SRB,RS,Serbia and Kosovo: S/RES/1244 (1999),Serbia and Kosovo: S/RES/1244 (1999),Republic of Serbia,Serbia,the Republic of Serbia,,Europe,Southern Europe,Serbie,Europe,Europe australe
+1,166,SEY,SYC,SC,Seychelles,Seychelles,Seychelles,Seychelles,the Republic of Seychelles,of Seychelles,Africa,Eastern Africa,Seychelles,Afrique,Afrique orientale
+1,169,SLE,SLE,SL,Sierra Leone,Sierra Leone,Sierra Leone,Sierra Leone,the Republic of Sierra Leone,Sierra Leonean,Africa,Western Africa,Sierra Leone,Afrique,Afrique occidentale
+1,168,SIN,SGP,SG,Singapore,Singapore,Singapore,Singapore,the Republic of Singapore,Singaporean,Asia,South-eastern Asia,Singapour,Asie,Asie du Sud-Est
+1,255,SXM,SXM,SX,Sint Maarten (Dutch part),Sint Maarten (Dutch part),Saint Maarten,Sint Maarten (Dutch part),,,Latin America and the Caribbean,Caribbean,Saint-Martin,Am,Cara
+1,180,SVK,SVK,SK,Slovakia,Slovakia,Slovakia,Slovakia,the Slovak Republic,Slovak,Europe,Eastern Europe,Slovaquie,Europe,Europe orientale
+1,181,SVN,SVN,SI,Slovenia,Slovenia,Slovenia,Slovenia,the Republic of Slovenia,Slovene,Europe,Southern Europe,Slov,Europe,Europe australe
+1,171,SOL,SLB,SB,Solomon Islands,Solomon Islands,Solomon Islands,Solomon Islands,Solomon Islands,of Solomon Islands,Oceania,Melanesia,Iles Salomon,Oc,M
+1,172,SOM,SOM,SO,Somalia,Somalia,Somalia,Somalia,the Somali Republic,Somali,Africa,Eastern Africa,Somalie,Afrique,Afrique orientale
+1,159,RSA,ZAF,ZA,South Africa,South Africa,South Africa,South Africa,the Republic of South Africa,South African,Africa,Southern Africa,Afrique du Sud,Afrique,Afrique australe
+1,245,SGS,,,South Georgia and the South Sandwich Islands,,,South Georgia and the South Sandwich Islands,,,,,,,
+1,179,SSD,SSD,SS,South Sudan,South Sudan,,South Sudan,the Republic of South Sudan,,Africa,Eastern Africa,,Afrique,Afrique septentrionale
+1,173,SPA,ESP,ES,Spain,Spain,Spain,Spain,the Kingdom of Spain,Spanish,Europe,Southern Europe,Espagne,Europe,Europe australe
+1,112,LKA,LKA,LK,Sri Lanka,Sri Lanka,Sri Lanka,Sri Lanka,the Democratic Socialist Republic of Sri Lanka,of Sri Lanka,Asia,Southern Asia,Sri Lanka,Asie,Sud de l'Asie centrale
+1,69,GAZ,PSE,PS,State of Palestine,Palestinian,State of Palestine,State of Palestine,State of Palestine,Palestinians,Asia,Western Asia,Territoire palestinien occup,Asie,Asie occidentale
+1,216,STA,XXA,,Stateless,Stateless,,Stateless,,,Stateless,Stateless,Apatrides,Apatrides,Apatrides
+1,177,SUD,SDN,SD,Sudan,Sudan,Sudan,Sudan,the Republic of the Sudan,Sudanese,Africa,Northern Africa,Soudan,Afrique,Afrique septentrionale
+1,178,SUR,SUR,SR,Suriname,Suriname,Suriname,Suriname,the Republic of Suriname,Surinamese,Latin America and the Caribbean,South America,Suriname,Am,Am
+1,246,SJM,SJM,,Svalbard and Jan Mayen,Svalbard and Jan Mayen,,Svalbard and Jan Mayen,,,Europe,Northern Europe,,,
+1,183,SWE,SWE,SE,Sweden,Sweden,Sweden,Sweden,the Kingdom of Sweden,Swedish,Europe,Northern Europe,Su,Europe,Europe septentrionale
+1,184,SWI,CHE,CH,Switzerland,Switzerland,Switzerland,Switzerland,the Swiss Confederation,Swiss,Europe,Western Europe,Suisse,Europe,Europe occidentale
+1,185,SYR,SYR,SY,Syrian Arab Rep.,Syrian Arab Rep.,Syrian Arab Republic,Syrian Arab Rep.,the Syrian Arab Republic,Syrian,Asia,Western Asia,R,Asie,Asie occidentale
+1,189,TJK,TJK,TJ,Tajikistan,Tajikistan,Tajikistan,Tajikistan,the Republic of Tajikistan,Tajik,Asia,Central Asia,Tadjikistan,Asie,Sud de l'Asie centrale
+1,188,THA,THA,TH,Thailand,Thailand,Thailand,Thailand,the Kingdom of Thailand,Thai,Asia,South-eastern Asia,Tha,Asie,Asie du Sud-Est
+1,218,TIB,TIB,,Tibetan,Tibetan,,Tibet,,,Asia,Various,Tibet,Asie,Divers
+1,191,TMP,TLS,TL,Timor-Leste,Timor-Leste,Timor-Leste,Timor-Leste,Timor-Leste,,Asia,South-eastern Asia,Timor-Leste,Asie,Asie du Sud-Est
+1,192,TOG,TGO,TG,Togo,Togo,Togo,Togo,the Togolese Republic,Togolese,Africa,Western Africa,Togo,Afrique,Afrique occidentale
+1,193,TON,TON,TO,Tonga,Tonga,Tonga,Tonga,the Kingdom of Tonga,Tongan,Oceania,Polynesia,Tonga,Oc,Polyn
+1,194,TRT,TTO,TT,Trinidad and Tobago,Trinidad and Tobago,Trinidad and Tobago,Trinidad and Tobago,the Republic of Trinidad and Tobago,of Trinidad and Tobago,Latin America and the Caribbean,Caribbean,Trinit,Am,Cara
+1,195,TUN,TUN,TN,Tunisia,Tunisia,Tunisia,Tunisia,the Republic of Tunisia,Tunisian,Africa,Northern Africa,Tunisie,Afrique,Afrique septentrionale
+1,196,TUR,TUR,TR,Türkiye,Türkiye,Türkiye,Türkiye,the Republic of Türkiye,Turkish,Asia,Western Asia,Türkiye,Asie,Asie occidentale
+1,190,TKM,TKM,TM,Turkmenistan,Turkmenistan,Turkmenistan,Turkmenistan,Turkmenistan,Turkmen,Asia,Central Asia,Turkm,Asie,Sud de l'Asie centrale
+1,187,TCI,TCA,TC,Turks and Caicos Islands,Turks and Caicos Islands,Turks and Caicos Islands,Turks and Caicos Islands,,,Latin America and the Caribbean,Caribbean,Iles Turques et Caiques,Am,Cara
+1,197,TUV,TUV,TV,Tuvalu,Tuvalu,Tuvalu,Tuvalu,Tuvalu,Tuvaluan,Oceania,Polynesia,Tuvalu,Oc,Polyn
+1,199,UGA,UGA,UG,Uganda,Uganda,Uganda,Uganda,the Republic of Uganda,Ugandan,Africa,Eastern Africa,Ouganda,Afrique,Afrique orientale
+1,200,UKR,UKR,UA,Ukraine,Ukraine,Ukraine,Ukraine,Ukraine,Ukrainian,Europe,Eastern Europe,Ukraine,Europe,Europe orientale
+1,198,UAE,ARE,AE,United Arab Emirates,United Arab Emirates,United Arab Emirates,United Arab Emirates,the United Arab Emirates,of the United Arab Emirates,Asia,Western Asia,Emirats arabes unis,Asie,Asie occidentale
+1,70,GBR,GBR,GB,United Kingdom of Great Britain and Northern Ireland,United Kingdom of Great Britain and Northern Ireland,United Kingdom,United Kingdom of Great Britain and Northern Ireland,the United Kingdom of Great Britain and Northern Ireland,of the United Kingdom (of Great Britain and Northern Ireland),Europe,Northern Europe,Royaume-Uni,Europe,Europe septentrionale
+1,186,TAN,TZA,TZ,United Rep. of Tanzania,United Rep. of Tanzania,United Republic of Tanzania,United Rep. of Tanzania,the United Republic of Tanzania,Tanzanian,Africa,Eastern Africa,R,Afrique,Afrique orientale
+1,202,USA,USA,US,United States of America,United States of America,United States,United States of America,the United States of America,of the United States (of America),Northern America,Northern America,Etats-Unis d'Am,Am,Am
+1,262,UKN,UNK,UK,Unknown ,Unknown ,,,,,,,,,
+1,201,URU,URY,UY,Uruguay,Uruguay,Uruguay,Uruguay,the Eastern Republic of Uruguay,Uruguayan,Latin America and the Caribbean,South America,Uruguay,Am,Am
+1,203,UZB,UZB,UZ,Uzbekistan,Uzbekistan,Uzbekistan,Uzbekistan,the Republic of Uzbekistan,Uzbek,Asia,Central Asia,Ouzb,Asie,Sud de l'Asie centrale
+1,204,VAN,VUT,VU,Vanuatu,Vanuatu,Vanuatu,Vanuatu,the Republic of Vanuatu,of Vanuatu,Oceania,Melanesia,Vanuatu,Oc,M
+1,207,VEN,VEN,VE,Venezuela (Bolivarian Republic of),Venezuela (Bolivarian Republic of),Bolivarian Republic of Venezuela,Venezuela (Bolivarian Republic of),Bolivarian Republic of Venezuela,Venezuelan,Latin America and the Caribbean,South America,Venezuela (R,Am,Am
+1,174,SRV,VNM,VN,Viet Nam,Viet Nam,Viet Nam,Viet Nam,the Socialist Republic of Viet Nam,Vietnamese,Asia,South-eastern Asia,Viet Nam,Asie,Asie du Sud-Est
+1,210,WSH,ESH,EH,Western Sahara,Western Sahara,Western Sahara,Western Sahara,,,Africa,Northern Africa,Sahara occidental,Afrique,Afrique septentrionale
+1,211,YEM,YEM,YE,Yemen,Yemen,Yemen,Yemen,the Republic of Yemen,Yemeni,Asia,Western Asia,Y,Asie,Asie occidentale
+1,213,ZAM,ZMB,ZM,Zambia,Zambia,Zambia,Zambia,the Republic of Zambia,Zambian,Africa,Eastern Africa,Zambie,Afrique,Afrique orientale
+1,214,ZIM,ZWE,ZW,Zimbabwe,Zimbabwe,Zimbabwe,Zimbabwe,the Republic of Zimbabwe,Zimbabwean,Africa,Eastern Africa,Zimbabwe,Afrique,Afrique orientale
