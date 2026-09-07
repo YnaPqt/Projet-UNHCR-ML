@@ -9,9 +9,7 @@ Les données présentées constituent des 5 jeux de données.
 
 2. **IDMC (Observatoire des situations de déplacement interne)** : Chiffres mondiaux pour les personnes déplacées à l'intérieur de leur propre pays en raison de conflits et de violences
 
-3. **UNRWA (Office de secours et de travaux des Nations Unies) :** Réfugiés de Palestine sous le mandat de l'UNRWA
-
-4. **Données démographiques (Demographics)**: Elles sont disponibles pour les données du HCR, de l'IDMC et de l'UNRWA. Aucune donnée démographique n'est disponible pour les données de réinstallation et de naturalisation
+3. **Données démographiques (Demographics)**: Elles sont disponibles pour les données du HCR, de l'IDMC et de l'UNRWA. Aucune donnée démographique n'est disponible pour les données de réinstallation et de naturalisation
 
 ## **Structure des données (Data structure)**
 
@@ -217,18 +215,22 @@ Dans les ensembles de données sur les demandes d'asile et les décisions d'asil
 * returned_idps
 
 
-**unrwa**
-* year
-* coo_id
-* coo_name
-* coo
-* coo_iso
-* coa_id
-* coa_name
-* coa
-* coa_iso
-* total
-
+**pays**
+* id
+* code
+* iso
+* iso2
+* name
+* nameOrigin
+* nameLong
+* nameShort
+* nameFormal
+* nationality
+* majorArea
+* region
+* nameFr
+* majorAreaFr
+* regionFr
 
 
 
