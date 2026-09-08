@@ -1,0 +1,6 @@
+source,rule,status,rows_before,rows_after,message
+demandes,LEFT_JOIN,OK,934.0,934.0,validate=one_to_one
+decisions,LEFT_JOIN,OK,934.0,934.0,validate=one_to_one
+solutions,LEFT_JOIN,OK,934.0,934.0,validate=one_to_one
+pays,LEFT_JOIN,OK,934.0,934.0,validate=many_to_one
+pays,UNMATCHED_COUNTRY_ID,WARNING,,,12 ligne(s) IDMC sans correspondance dans le référentiel pays

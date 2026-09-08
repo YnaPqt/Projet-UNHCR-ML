@@ -1,0 +1,15 @@
+column,missing_count,missing_pct
+_row_id,0,0.0
+year,0,0.0
+coo_id,0,0.0
+coo_name,0,0.0
+coo,0,0.0
+coo_iso,0,0.0
+coa_id,0,0.0
+coa_name,0,0.0
+coa,0,0.0
+coa_iso,0,0.0
+returned_refugees,15161,71.32
+resettlement,11644,54.77
+naturalisation,13872,65.26
+returned_idps,20878,98.21

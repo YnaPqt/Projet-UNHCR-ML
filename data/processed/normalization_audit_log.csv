@@ -1,0 +1,3 @@
+dataset,column,rule,affected_rows,action
+idmc,coo_iso,INVALID_ISO_FORMAT,12,Preserved for investigation
+idmc,coa_iso,INVALID_ISO_FORMAT,12,Preserved for investigation

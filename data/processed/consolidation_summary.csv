@@ -1,0 +1,2 @@
+rows,columns,countries,min_year,max_year,duplicate_year_country,idmc_missing,asylum_data_available_pct,decisions_data_available_pct,solutions_data_available_pct
+934,23,84,1990,2025,0,0,96.15,95.82,92.61
