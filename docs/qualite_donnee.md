@@ -1,4 +1,4 @@
-# Phase 2 --- Vérification de la qualité des données pour le Machine Learning
+# Vérification de la qualité des données pour le Machine Learning
 
 ## 1. Objectif de la phase
 
