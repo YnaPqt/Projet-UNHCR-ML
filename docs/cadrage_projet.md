@@ -51,7 +51,7 @@ les dynamiques de déplacement interne et transfrontalier pour aider les décide
 |Questions|Type de problème|Cible|
 | --- | --- | --- |
 1.| Quelles régions risquent de connaître une forte augmentation des déplacements ?|Classification|Région ou pays  d’origine
-2.|Prédire combien de personne pourraient arriver dans une région au cours des quelques mois?|Séries temporelles|Nombre de personnes déplacées, réfugiés et apatrides
+2.|Prédire combien de personne pourraient arriver dans une région ?
 3.|Où pourrait apparaître une concentration importante de nouvelles arrivées ?|Clustering|Région ou pays d’asile
 4.|Peut-on prédire si un pays connaîtra une augmentation critique (> 15 %) de son stock de déplacés internes (IDPs) l’année suivante ?|classification|Région ou pays  d’origine
 
