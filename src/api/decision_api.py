@@ -9,7 +9,7 @@ import requests
 import pandas as pd
 from pathlib import Path
 
-RAW_DATA_DIR = Path("..") / "data" / "raw"
+RAW_DATA_DIR = Path(".") / "data" / "raw"
 
 # API Endpoint
 url = "https://api.unhcr.org/population/v1/asylum-decisions/"

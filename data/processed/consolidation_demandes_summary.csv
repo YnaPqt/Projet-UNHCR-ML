@@ -1,0 +1,8 @@
+indicator,value
+demandes_source_rows,120597
+detailed_consolidated_rows,120597
+asylum_country_year_rows,3807
+detailed_unique_origin_countries,215
+detailed_unique_asylum_countries,186
+detailed_min_year,2000
+detailed_max_year,2025

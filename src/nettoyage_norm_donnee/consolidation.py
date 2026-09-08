@@ -1,34 +1,3 @@
-"""
-Consolidation des données
-===================================
-
-Objectif
---------
-Construire une table analytique unique au grain :
-
-    1 ligne = 1 année × 1 pays d'origine
-
-Table centrale :
-    IDMC
-
-Sources agrégées :
-    - demandes d'asile
-    - décisions d'asile
-    - solutions
-
-Enrichissement :
-    - référentiel pays
-
-Important
----------
-- IDMC reste la table de référence.
-- Les autres sources sont agrégées au grain year × coo_id.
-- Toutes les jointures sont des LEFT JOIN.
-- Aucun NaN n'est remplacé automatiquement par 0.
-- Aucune cible ML n'est créée ici.
-- Aucun lag, croissance ou rolling feature n'est créé ici.
-"""
-
 from pathlib import Path
 import logging
 
@@ -37,7 +6,7 @@ import pandas as pd
 
 
 # =============================================================================
-# 1. CONFIGURATION
+# CONFIGURATION
 # =============================================================================
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -47,19 +16,34 @@ NORMALIZED_DIR = BASE_DIR / "data" / "normalized"
 CONSOLIDATED_DIR = BASE_DIR / "data" / "consolidated"
 PROCESSED_DIR = BASE_DIR / "data" / "processed"
 
+CONSOLIDATED_DIR.mkdir(parents=True, exist_ok=True)
+PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+
 
 FILES = {
-    "idmc": NORMALIZED_DIR / "idmc_normalized.csv",
     "demandes": NORMALIZED_DIR / "demandes_normalized.csv",
     "decisions": NORMALIZED_DIR / "decisions_normalized.csv",
     "solutions": NORMALIZED_DIR / "solutions_normalized.csv",
+    "idmc": NORMALIZED_DIR / "idmc_normalized.csv",
     "pays": NORMALIZED_DIR / "pays_normalized.csv",
 }
 
 
-# =============================================================================
-# 2. LOGGING
-# =============================================================================
+OUTPUT_DETAIL = (
+    CONSOLIDATED_DIR
+    / "dataset_demandes_consolide_detail.csv"
+)
+
+OUTPUT_COUNTRY_YEAR = (
+    CONSOLIDATED_DIR
+    / "dataset_pays_asile_annee.csv"
+)
+
+AUDIT_FILE = (
+    PROCESSED_DIR
+    / "consolidation_demandes_audit.csv"
+)
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -70,65 +54,57 @@ logger = logging.getLogger(__name__)
 
 
 # =============================================================================
-# 3. AUDIT
+# AUDIT
 # =============================================================================
 
-audit_records = []
+AUDIT_COLUMNS = [
+    "dataset",
+    "check",
+    "status",
+    "count",
+    "details",
+]
+
+audit_log = []
 
 
 def add_audit(
-    source,
-    rule,
+    dataset,
+    check,
     status,
-    rows_before=None,
-    rows_after=None,
-    message=None,
+    count=None,
+    details=None,
 ):
-    audit_records.append(
+    audit_log.append(
         {
-            "source": source,
-            "rule": rule,
+            "dataset": dataset,
+            "check": check,
             "status": status,
-            "rows_before": rows_before,
-            "rows_after": rows_after,
-            "message": message,
+            "count": count,
+            "details": details,
         }
     )
 
 
 # =============================================================================
-# 4. OUTILS GÉNÉRAUX
+# OUTILS
 # =============================================================================
 
-def check_directories():
+def sum_preserve_na(series):
     """
-    Vérifie les répertoires nécessaires.
+    Somme en conservant NaN lorsque toutes les valeurs du groupe sont NaN.
+    Évite de transformer artificiellement une absence d'information en 0.
     """
-
-    if not NORMALIZED_DIR.exists():
-        raise FileNotFoundError(
-            f"Dossier normalized introuvable : {NORMALIZED_DIR}"
-        )
-
-    CONSOLIDATED_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    PROCESSED_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
+    return series.sum(min_count=1)
 
 
-def load_dataset(path, dataset_name):
+def load_csv(path, name):
     """
     Charge un fichier CSV normalisé.
     """
-
     if not path.exists():
         raise FileNotFoundError(
-            f"Fichier introuvable pour '{dataset_name}' : {path}"
+            f"Fichier introuvable pour '{name}' : {path}"
         )
 
     df = pd.read_csv(
@@ -138,7 +114,7 @@ def load_dataset(path, dataset_name):
 
     logger.info(
         "%s chargé : %s lignes | %s colonnes",
-        dataset_name,
+        name,
         len(df),
         len(df.columns),
     )
@@ -146,11 +122,10 @@ def load_dataset(path, dataset_name):
     return df
 
 
-def require_columns(df, columns, dataset_name):
+def require_columns(df, columns, name):
     """
-    Vérifie que toutes les colonnes attendues existent.
+    Vérifie la présence des colonnes obligatoires.
     """
-
     missing = [
         col
         for col in columns
@@ -159,203 +134,190 @@ def require_columns(df, columns, dataset_name):
 
     if missing:
         raise ValueError(
-            f"{dataset_name} : colonnes manquantes : {missing}"
+            f"{name} : colonnes manquantes : {missing}"
         )
 
 
-def check_unique_grain(df, keys, dataset_name):
+def check_unique(
+    df,
+    keys,
+    name,
+    export_name=None,
+):
     """
-    Vérifie qu'une table est unique au grain demandé.
+    Vérifie si un grain métier est unique.
+    Les lignes répétées ne sont pas supprimées automatiquement.
     """
-
-    duplicate_mask = df.duplicated(
+    duplicated = df.duplicated(
         subset=keys,
         keep=False,
     )
 
-    duplicate_count = int(
-        duplicate_mask.sum()
+    count = int(
+        duplicated.sum()
     )
 
-    if duplicate_count == 0:
-
-        logger.info(
-            "%s : grain unique %s",
-            dataset_name,
-            keys,
+    if count == 0:
+        add_audit(
+            dataset=name,
+            check="unique_grain",
+            status="OK",
+            count=0,
+            details=str(keys),
         )
 
         return True
 
-
-    duplicates = (
-        df.loc[duplicate_mask]
-        .sort_values(keys)
-    )
-
-    duplicates.to_csv(
-        PROCESSED_DIR
-        / f"{dataset_name}_grain_duplicates.csv",
-        index=False,
-    )
-
     add_audit(
-        source=dataset_name,
-        rule="CHECK_UNIQUE_GRAIN",
+        dataset=name,
+        check="unique_grain",
         status="WARNING",
-        message=(
-            f"{duplicate_count} ligne(s) non uniques "
-            f"au grain {keys}"
-        ),
+        count=count,
+        details=str(keys),
     )
 
-    logger.warning(
-        "%s : %s ligne(s) non uniques au grain %s",
-        dataset_name,
-        duplicate_count,
-        keys,
-    )
+    if export_name:
+        (
+            df.loc[duplicated]
+            .sort_values(keys)
+            .to_csv(
+                PROCESSED_DIR / export_name,
+                index=False,
+            )
+        )
 
     return False
 
 
-# =============================================================================
-# 5. TABLE CENTRALE IDMC
-# =============================================================================
-
-def prepare_idmc(idmc):
+def left_join_controlled(
+    left,
+    right,
+    on,
+    name,
+    validate,
+):
     """
-    Prépare la table centrale IDMC.
-
-    Grain attendu :
-        year × coo_id
+    LEFT JOIN sécurisé avec contrôle du nombre de lignes.
     """
+    before = len(left)
 
-    required = [
-        "year",
-        "coo_id",
-        "total",
-    ]
-
-    require_columns(
-        idmc,
-        required,
-        "idmc",
+    merged = left.merge(
+        right,
+        on=on,
+        how="left",
+        validate=validate,
     )
 
+    after = len(merged)
 
-    idmc_base = (
-        idmc[
-            required
-        ]
-        .rename(
-            columns={
-                "total": "idmc_total"
-            }
-        )
-        .copy()
-    )
-
-
-    unique = check_unique_grain(
-        idmc_base,
-        [
-            "year",
-            "coo_id",
-        ],
-        "idmc",
-    )
-
-
-    if not unique:
+    if before != after:
         raise ValueError(
-            "IDMC n'est pas unique au grain "
-            "year × coo_id. "
-            "Aucune agrégation automatique n'est appliquée."
+            f"{name} : changement du nombre de lignes "
+            f"({before} -> {after})"
         )
 
+    add_audit(
+        dataset=name,
+        check="left_join_row_count",
+        status="OK",
+        count=after,
+        details=f"join={on}, validate={validate}",
+    )
 
-    return idmc_base
+    return merged
 
 
 # =============================================================================
-# 6. AGRÉGATION DES DEMANDES D'ASILE
+# DEMANDES — TABLE CENTRALE
 # =============================================================================
 
-def prepare_demandes(demandes):
+def prepare_demandes(df):
     """
-    Agrège les demandes d'asile au grain :
+    Conserve les demandes au grain détaillé.
 
-        year × coo_id
+    Grain candidat :
+        year
+        + coo_id
+        + coa_id
+        + procedure_type
+        + app_type
+        + dec_level
 
-    Interprétation :
-        total des demandes d'asile provenant
-        d'un pays d'origine donné sur une année.
+    Aucune agrégation automatique n'est réalisée.
     """
-
     required = [
         "year",
         "coo_id",
+        "coa_id",
+        "procedure_type",
+        "app_type",
+        "dec_level",
         "applied",
     ]
 
     require_columns(
-        demandes,
+        df,
         required,
         "demandes",
     )
 
+    demandes = df.copy()
 
-    demandes_origin = (
-        demandes
-        .groupby(
-            [
-                "year",
-                "coo_id",
-            ],
-            as_index=False,
-            dropna=False,
-        )
-        .agg(
-            asylum_applications=(
-                "applied",
-                "sum",
-            ),
-            demandes_source_rows=(
-                "applied",
-                "size",
-            ),
-        )
+    # Identifiant technique de ligne
+    demandes["_demand_row_id"] = np.arange(
+        len(demandes)
     )
 
+    candidate_key = [
+        "year",
+        "coo_id",
+        "coa_id",
+        "procedure_type",
+        "app_type",
+        "dec_level",
+    ]
 
-    check_unique_grain(
-        demandes_origin,
-        [
-            "year",
-            "coo_id",
-        ],
-        "demandes_aggregated",
+    is_unique = check_unique(
+        demandes,
+        candidate_key,
+        "demandes",
+        "demandes_repeated_business_grain.csv",
     )
 
+    if not is_unique:
+        logger.warning(
+            "Le grain candidat des demandes n'est pas unique. "
+            "Les lignes sont conservées sans agrégation automatique."
+        )
 
-    return demandes_origin
+    demandes["has_asylum_application_data"] = 1
+
+    return demandes
 
 
 # =============================================================================
-# 7. AGRÉGATION DES DÉCISIONS D'ASILE
+# DECISIONS
 # =============================================================================
 
-def prepare_decisions(decisions):
+def prepare_decisions(df):
     """
-    Agrège les décisions d'asile au grain :
+    Agrège les décisions au grain commun avec les demandes :
 
-        year × coo_id
+        year
+        + coo_id
+        + coa_id
+        + procedure_type
+        + dec_level
+
+    app_type n'existe pas dans decisions, donc il ne peut pas faire partie
+    de la clé de jointure.
     """
-
     required = [
         "year",
         "coo_id",
+        "coa_id",
+        "procedure_type",
+        "dec_level",
         "dec_recognized",
         "dec_other",
         "dec_rejected",
@@ -364,42 +326,46 @@ def prepare_decisions(decisions):
     ]
 
     require_columns(
-        decisions,
+        df,
         required,
         "decisions",
     )
 
+    group_keys = [
+        "year",
+        "coo_id",
+        "coa_id",
+        "procedure_type",
+        "dec_level",
+    ]
 
-    decisions_origin = (
-        decisions
+    decisions_agg = (
+        df
         .groupby(
-            [
-                "year",
-                "coo_id",
-            ],
-            as_index=False,
+            group_keys,
             dropna=False,
+            as_index=False,
         )
         .agg(
             decisions_recognized=(
                 "dec_recognized",
-                "sum",
+                sum_preserve_na,
             ),
             decisions_other=(
                 "dec_other",
-                "sum",
+                sum_preserve_na,
             ),
             decisions_rejected=(
                 "dec_rejected",
-                "sum",
+                sum_preserve_na,
             ),
             decisions_closed=(
                 "dec_closed",
-                "sum",
+                sum_preserve_na,
             ),
             decisions_total=(
                 "dec_total",
-                "sum",
+                sum_preserve_na,
             ),
             decisions_source_rows=(
                 "dec_total",
@@ -408,60 +374,53 @@ def prepare_decisions(decisions):
         )
     )
 
-
-    # -------------------------------------------------------------------------
-    # Taux de reconnaissance
-    # -------------------------------------------------------------------------
-
-    decisions_origin[
-        "recognition_rate"
-    ] = np.where(
-        decisions_origin[
-            "decisions_total"
-        ] > 0,
-
-        decisions_origin[
-            "decisions_recognized"
-        ]
-        /
-        decisions_origin[
-            "decisions_total"
-        ],
-
+    decisions_agg["recognition_rate"] = np.where(
+        decisions_agg["decisions_total"].gt(0),
+        (
+            decisions_agg["decisions_recognized"]
+            / decisions_agg["decisions_total"]
+        ),
         np.nan,
     )
 
+    decisions_agg["rejection_rate"] = np.where(
+        decisions_agg["decisions_total"].gt(0),
+        (
+            decisions_agg["decisions_rejected"]
+            / decisions_agg["decisions_total"]
+        ),
+        np.nan,
+    )
 
-    check_unique_grain(
-        decisions_origin,
-        [
-            "year",
-            "coo_id",
-        ],
+    decisions_agg["has_decisions_data"] = 1
+
+    check_unique(
+        decisions_agg,
+        group_keys,
         "decisions_aggregated",
     )
 
-
-    return decisions_origin
+    return decisions_agg
 
 
 # =============================================================================
-# 8. AGRÉGATION DES SOLUTIONS
+# SOLUTIONS
 # =============================================================================
 
-def prepare_solutions(solutions):
+def prepare_solutions(df):
     """
     Agrège les solutions au grain :
 
-        year × coo_id
+        year
+        + coo_id
+        + coa_id
 
     Les mesures restent séparées.
-    Aucun 'solutions_total' n'est créé.
     """
-
     required = [
         "year",
         "coo_id",
+        "coa_id",
         "returned_refugees",
         "resettlement",
         "naturalisation",
@@ -469,692 +428,704 @@ def prepare_solutions(solutions):
     ]
 
     require_columns(
-        solutions,
+        df,
         required,
         "solutions",
     )
 
+    group_keys = [
+        "year",
+        "coo_id",
+        "coa_id",
+    ]
 
-    solutions_origin = (
-        solutions
+    solutions_agg = (
+        df
         .groupby(
-            [
-                "year",
-                "coo_id",
-            ],
-            as_index=False,
+            group_keys,
             dropna=False,
+            as_index=False,
         )
         .agg(
             returned_refugees=(
                 "returned_refugees",
-                "sum",
+                sum_preserve_na,
             ),
             resettlement=(
                 "resettlement",
-                "sum",
+                sum_preserve_na,
             ),
             naturalisation=(
                 "naturalisation",
-                "sum",
+                sum_preserve_na,
             ),
             returned_idps=(
                 "returned_idps",
-                "sum",
+                sum_preserve_na,
             ),
             solutions_source_rows=(
-                "returned_idps",
+                "returned_refugees",
                 "size",
             ),
         )
     )
 
+    solutions_agg["has_solutions_data"] = 1
 
-    check_unique_grain(
-        solutions_origin,
-        [
-            "year",
-            "coo_id",
-        ],
+    check_unique(
+        solutions_agg,
+        group_keys,
         "solutions_aggregated",
     )
 
-
-    return solutions_origin
+    return solutions_agg
 
 
 # =============================================================================
-# 9. RÉFÉRENTIEL PAYS
+# REFERENTIEL PAYS
 # =============================================================================
 
-def prepare_country_dimension(pays):
+def prepare_country_dimension(df):
     """
     Prépare le référentiel pays.
-
-    Jointure future :
-        consolidated.coo_id = pays.id
     """
-
-    required = [
-        "id",
-        "iso",
-    ]
-
     require_columns(
-        pays,
-        required,
+        df,
+        [
+            "id",
+            "iso",
+        ],
         "pays",
     )
 
-
-    # -------------------------------------------------------------------------
-    # L'id pays doit être unique dans le référentiel
-    # -------------------------------------------------------------------------
-
-    duplicate_mask = (
-        pays["id"].notna()
-        & pays["id"].duplicated(
-            keep=False
-        )
-    )
-
-
-    if duplicate_mask.any():
-
-        conflicts = (
-            pays.loc[
-                duplicate_mask
-            ]
-            .sort_values(
-                "id"
+    if df["id"].duplicated().any():
+        duplicates = df.loc[
+            df["id"].duplicated(
+                keep=False
             )
-        )
+        ]
 
-
-        conflicts.to_csv(
+        duplicates.to_csv(
             PROCESSED_DIR
-            / "pays_id_conflicts.csv",
+            / "countries_duplicate_id.csv",
             index=False,
         )
 
-
         raise ValueError(
-            "Le référentiel pays contient "
-            "plusieurs lignes pour un même id."
+            "Le référentiel pays contient plusieurs lignes pour un même id."
         )
 
-
-    optional_columns = [
+    candidate_columns = [
+        "id",
+        "iso",
+        "iso2",
         "name",
-        "namefr",
+        "nameFr",
         "region",
-        "regionfr",
-        "majorarea",
-        "majorareafr",
+        "regionFr",
+        "majorArea",
+        "majorAreaFr",
     ]
 
-
-    selected_columns = [
+    available_columns = [
         col
-        for col in (
-            required
-            + optional_columns
-        )
-        if col in pays.columns
+        for col in candidate_columns
+        if col in df.columns
     ]
 
-
-    country_dim = (
-        pays[
-            selected_columns
-        ]
+    countries = (
+        df[available_columns]
+        .drop_duplicates("id")
         .copy()
+    )
+
+    return countries
+
+
+def build_origin_dimension(countries):
+    """
+    Dimension du pays d'origine.
+    """
+    rename_map = {
+        "id": "coo_id",
+        "iso": "origin_iso",
+        "iso2": "origin_iso2",
+        "name": "origin_country",
+        "nameFr": "origin_country_fr",
+        "region": "origin_region",
+        "regionFr": "origin_region_fr",
+        "majorArea": "origin_major_area",
+        "majorAreaFr": "origin_major_area_fr",
+    }
+
+    return countries.rename(
+        columns=rename_map
+    )
+
+
+def build_asylum_dimension(countries):
+    """
+    Dimension du pays d'asile.
+    """
+    rename_map = {
+        "id": "coa_id",
+        "iso": "asylum_iso",
+        "iso2": "asylum_iso2",
+        "name": "asylum_country",
+        "nameFr": "asylum_country_fr",
+        "region": "asylum_region",
+        "regionFr": "asylum_region_fr",
+        "majorArea": "asylum_major_area",
+        "majorAreaFr": "asylum_major_area_fr",
+    }
+
+    return countries.rename(
+        columns=rename_map
+    )
+
+
+# =============================================================================
+# IDMC — ENRICHISSEMENT OPTIONNEL
+# =============================================================================
+
+def prepare_idmc_context(df):
+    """
+    Prépare IDMC comme information contextuelle sur le pays d'origine.
+
+    L'ajout n'est autorisé que si IDMC est unique au grain :
+        year × coo_id
+
+    Sinon, aucune agrégation automatique n'est réalisée.
+    """
+    required = [
+        "year",
+        "coo_id",
+        "total",
+    ]
+
+    require_columns(
+        df,
+        required,
+        "idmc",
+    )
+
+    key = [
+        "year",
+        "coo_id",
+    ]
+
+    repeated = df.duplicated(
+        subset=key,
+        keep=False,
+    )
+
+    if repeated.any():
+        (
+            df.loc[repeated]
+            .sort_values(key)
+            .to_csv(
+                PROCESSED_DIR
+                / "idmc_multiple_rows_year_origin.csv",
+                index=False,
+            )
+        )
+
+        add_audit(
+            dataset="idmc",
+            check="year_origin_grain",
+            status="WARNING",
+            count=int(repeated.sum()),
+            details=(
+                "IDMC non unique sur year × coo_id. "
+                "Enrichissement ignoré."
+            ),
+        )
+
+        logger.warning(
+            "IDMC non unique sur year × coo_id : "
+            "l'enrichissement IDMC est ignoré."
+        )
+
+        return None
+
+    result = (
+        df[
+            [
+                "year",
+                "coo_id",
+                "total",
+            ]
+        ]
         .rename(
             columns={
-                "id": "coo_id",
-                "iso": "country_iso",
-                "name": "country_name",
-                "namefr": "country_name_fr",
-                "region": "country_region",
-                "regionfr": "country_region_fr",
-                "majorarea": "country_major_area",
-                "majorareafr": "country_major_area_fr",
+                "total": "idmc_total_origin"
             }
         )
+        .copy()
     )
 
-
-    return country_dim
-
-
-# =============================================================================
-# 10. LEFT JOIN CONTRÔLÉ
-# =============================================================================
-
-def controlled_left_join(
-    base,
-    source,
-    source_name,
-    keys,
-    validate,
-):
-    """
-    LEFT JOIN avec contrôle du nombre de lignes.
-
-    Une source d'enrichissement ne doit jamais
-    multiplier les lignes de la table IDMC.
-    """
-
-    rows_before = len(
-        base
-    )
-
-
-    result = base.merge(
-        source,
-        on=keys,
-        how="left",
-        validate=validate,
-    )
-
-
-    rows_after = len(
-        result
-    )
-
-
-    if rows_after != rows_before:
-
-        raise ValueError(
-            f"{source_name} : le nombre de lignes "
-            f"est passé de {rows_before} à {rows_after}."
-        )
-
-
-    add_audit(
-        source=source_name,
-        rule="LEFT_JOIN",
-        status="OK",
-        rows_before=rows_before,
-        rows_after=rows_after,
-        message=f"validate={validate}",
-    )
-
-
-    logger.info(
-        "%s : LEFT JOIN OK | %s lignes",
-        source_name,
-        rows_after,
-    )
-
+    result["has_idmc_data"] = 1
 
     return result
 
 
 # =============================================================================
-# 11. FLAGS DE DISPONIBILITÉ
+# CONSOLIDATION DETAILLEE
 # =============================================================================
 
-def add_availability_flags(df):
+def build_detailed_dataset(
+    demandes,
+    decisions,
+    solutions,
+    origin_dim,
+    asylum_dim,
+    idmc_context=None,
+):
     """
-    Un NaN après jointure ne signifie pas automatiquement zéro.
+    Construit le dataset consolidé détaillé.
 
-    Ces indicateurs permettent de distinguer :
-    - donnée présente ;
-    - donnée absente.
+    Le nombre de lignes final doit rester identique
+    au nombre de lignes de demandes.
     """
+    result = demandes.copy()
 
-    df = df.copy()
+    # -------------------------------------------------------------------------
+    # Décisions
+    # -------------------------------------------------------------------------
 
+    decision_keys = [
+        "year",
+        "coo_id",
+        "coa_id",
+        "procedure_type",
+        "dec_level",
+    ]
 
-    availability_mapping = {
-        "asylum_applications":
-        "has_asylum_data",
+    result = left_join_controlled(
+        left=result,
+        right=decisions,
+        on=decision_keys,
+        name="join_decisions",
+        validate="many_to_one",
+    )
 
-        "decisions_total":
+    # -------------------------------------------------------------------------
+    # Solutions
+    # -------------------------------------------------------------------------
+
+    solution_keys = [
+        "year",
+        "coo_id",
+        "coa_id",
+    ]
+
+    result = left_join_controlled(
+        left=result,
+        right=solutions,
+        on=solution_keys,
+        name="join_solutions",
+        validate="many_to_one",
+    )
+
+    # -------------------------------------------------------------------------
+    # Pays d'origine
+    # -------------------------------------------------------------------------
+
+    result = left_join_controlled(
+        left=result,
+        right=origin_dim,
+        on=["coo_id"],
+        name="join_origin_country",
+        validate="many_to_one",
+    )
+
+    # -------------------------------------------------------------------------
+    # Pays d'asile
+    # -------------------------------------------------------------------------
+
+    result = left_join_controlled(
+        left=result,
+        right=asylum_dim,
+        on=["coa_id"],
+        name="join_asylum_country",
+        validate="many_to_one",
+    )
+
+    # -------------------------------------------------------------------------
+    # IDMC pays d'origine
+    # -------------------------------------------------------------------------
+
+    if idmc_context is not None:
+        result = left_join_controlled(
+            left=result,
+            right=idmc_context,
+            on=[
+                "year",
+                "coo_id",
+            ],
+            name="join_idmc_context",
+            validate="many_to_one",
+        )
+
+    # -------------------------------------------------------------------------
+    # Flags de présence des sources
+    # -------------------------------------------------------------------------
+
+    source_flags = [
         "has_decisions_data",
-
-        "returned_idps":
         "has_solutions_data",
-    }
+        "has_idmc_data",
+    ]
 
-
-    for measure, flag in availability_mapping.items():
-
-        if measure in df.columns:
-
-            df[flag] = (
-                df[measure]
-                .notna()
+    for flag in source_flags:
+        if flag in result.columns:
+            result[flag] = (
+                result[flag]
+                .fillna(0)
                 .astype("Int8")
             )
 
-
-    return df
+    return result
 
 
 # =============================================================================
-# 12. CONTRÔLES FINAUX
+# DATASET BUSINESS : PAYS D'ASILE × ANNEE
 # =============================================================================
 
-def final_quality_checks(
-    consolidated,
-    idmc_base,
+def build_asylum_country_year(
+    demandes,
+    asylum_dim,
 ):
     """
-    Contrôles obligatoires après consolidation.
+    Produit un dataset séparé pour les analyses métier :
+
+        year × coa_id
+
+    Exemple d'usage :
+        - pays d'asile les plus demandés ;
+        - évolution annuelle des demandes ;
+        - nombre de pays d'origine distincts.
     """
-
-    # -------------------------------------------------------------------------
-    # 1. Aucune ligne IDMC perdue
-    # -------------------------------------------------------------------------
-
-    if len(consolidated) != len(idmc_base):
-
-        raise ValueError(
-            "Le nombre de lignes final "
-            "diffère de la table IDMC."
-        )
-
-
-    # -------------------------------------------------------------------------
-    # 2. Grain toujours unique
-    # -------------------------------------------------------------------------
-
-    duplicates = (
-        consolidated
-        .duplicated(
+    result = (
+        demandes
+        .groupby(
             [
                 "year",
+                "coa_id",
+            ],
+            dropna=False,
+            as_index=False,
+        )
+        .agg(
+            asylum_applications=(
+                "applied",
+                sum_preserve_na,
+            ),
+            origin_countries=(
                 "coo_id",
-            ]
+                "nunique",
+            ),
+            demand_rows=(
+                "applied",
+                "size",
+            ),
         )
-        .sum()
     )
 
-
-    if duplicates > 0:
-
-        raise ValueError(
-            f"{duplicates} doublon(s) détecté(s) "
-            "au grain year × coo_id."
-        )
-
-
-    # -------------------------------------------------------------------------
-    # 3. Contrôle pays non référencés
-    # -------------------------------------------------------------------------
-
-    if "country_iso" in consolidated.columns:
-
-        missing_country = (
-            consolidated[
-                "coo_id"
-            ].notna()
-            &
-            consolidated[
-                "country_iso"
-            ].isna()
-        )
-
-
-        count = int(
-            missing_country.sum()
-        )
-
-
-        if count > 0:
-
-            consolidated.loc[
-                missing_country
-            ].to_csv(
-                PROCESSED_DIR
-                / "unmatched_country_ids.csv",
-                index=False,
-            )
-
-
-            add_audit(
-                source="pays",
-                rule="UNMATCHED_COUNTRY_ID",
-                status="WARNING",
-                message=(
-                    f"{count} ligne(s) IDMC "
-                    "sans correspondance dans le référentiel pays"
-                ),
-            )
-
-
-    logger.info(
-        "Contrôles finaux de consolidation : OK"
+    result = left_join_controlled(
+        left=result,
+        right=asylum_dim,
+        on=["coa_id"],
+        name="join_asylum_country_year_dimension",
+        validate="many_to_one",
     )
+
+    return result
 
 
 # =============================================================================
-# 13. PIPELINE PRINCIPAL
+# RESUME DE CONSOLIDATION
+# =============================================================================
+
+def build_summary(
+    demandes_raw,
+    detailed,
+    asylum_country_year,
+):
+    """
+    Produit un résumé simple de la consolidation.
+    """
+    summary = pd.DataFrame(
+        [
+            {
+                "indicator": "demandes_source_rows",
+                "value": len(demandes_raw),
+            },
+            {
+                "indicator": "detailed_consolidated_rows",
+                "value": len(detailed),
+            },
+            {
+                "indicator": "asylum_country_year_rows",
+                "value": len(asylum_country_year),
+            },
+            {
+                "indicator": "detailed_unique_origin_countries",
+                "value": detailed["coo_id"].nunique(
+                    dropna=True
+                ),
+            },
+            {
+                "indicator": "detailed_unique_asylum_countries",
+                "value": detailed["coa_id"].nunique(
+                    dropna=True
+                ),
+            },
+            {
+                "indicator": "detailed_min_year",
+                "value": detailed["year"].min(),
+            },
+            {
+                "indicator": "detailed_max_year",
+                "value": detailed["year"].max(),
+            },
+        ]
+    )
+
+    return summary
+
+
+# =============================================================================
+# MAIN
 # =============================================================================
 
 def main():
 
     logger.info(
-        "=== Consolidation : démarrage ==="
+        "=== Consolidation centrée sur les demandes d'asile ==="
     )
 
+    # =========================================================================
+    # 1. Chargement
+    # =========================================================================
 
-    check_directories()
-
-
-    # -------------------------------------------------------------------------
-    # Chargement
-    # -------------------------------------------------------------------------
-
-    idmc = load_dataset(
-        FILES["idmc"],
-        "idmc",
-    )
-
-    demandes = load_dataset(
+    demandes_raw = load_csv(
         FILES["demandes"],
         "demandes",
     )
 
-    decisions = load_dataset(
+    decisions_raw = load_csv(
         FILES["decisions"],
         "decisions",
     )
 
-    solutions = load_dataset(
+    solutions_raw = load_csv(
         FILES["solutions"],
         "solutions",
     )
 
-    pays = load_dataset(
+    pays_raw = load_csv(
         FILES["pays"],
         "pays",
     )
 
+    idmc_raw = None
 
-    # -------------------------------------------------------------------------
-    # Préparation
-    # -------------------------------------------------------------------------
-
-    idmc_base = prepare_idmc(
-        idmc
-    )
-
-    demandes_origin = prepare_demandes(
-        demandes
-    )
-
-    decisions_origin = prepare_decisions(
-        decisions
-    )
-
-    solutions_origin = prepare_solutions(
-        solutions
-    )
-
-    country_dim = prepare_country_dimension(
-        pays
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Table centrale
-    # -------------------------------------------------------------------------
-
-    consolidated = (
-        idmc_base.copy()
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Jointure demandes
-    # -------------------------------------------------------------------------
-
-    consolidated = controlled_left_join(
-        base=consolidated,
-        source=demandes_origin,
-        source_name="demandes",
-        keys=[
-            "year",
-            "coo_id",
-        ],
-        validate="one_to_one",
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Jointure décisions
-    # -------------------------------------------------------------------------
-
-    consolidated = controlled_left_join(
-        base=consolidated,
-        source=decisions_origin,
-        source_name="decisions",
-        keys=[
-            "year",
-            "coo_id",
-        ],
-        validate="one_to_one",
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Jointure solutions
-    # -------------------------------------------------------------------------
-
-    consolidated = controlled_left_join(
-        base=consolidated,
-        source=solutions_origin,
-        source_name="solutions",
-        keys=[
-            "year",
-            "coo_id",
-        ],
-        validate="one_to_one",
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Jointure référentiel pays
-    #
-    # Plusieurs années pour un même pays côté IDMC :
-    # many_to_one.
-    # -------------------------------------------------------------------------
-
-    consolidated = controlled_left_join(
-        base=consolidated,
-        source=country_dim,
-        source_name="pays",
-        keys=[
-            "coo_id",
-        ],
-        validate="many_to_one",
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Flags de disponibilité
-    # -------------------------------------------------------------------------
-
-    consolidated = add_availability_flags(
-        consolidated
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Contrôles finaux
-    # -------------------------------------------------------------------------
-
-    final_quality_checks(
-        consolidated,
-        idmc_base,
-    )
-
-
-    # -------------------------------------------------------------------------
-    # Tri
-    # -------------------------------------------------------------------------
-
-    consolidated = (
-        consolidated
-        .sort_values(
-            [
-                "coo_id",
-                "year",
-            ]
+    if FILES["idmc"].exists():
+        idmc_raw = load_csv(
+            FILES["idmc"],
+            "idmc",
         )
-        .reset_index(
-            drop=True
+    else:
+        logger.warning(
+            "Fichier IDMC absent : "
+            "la consolidation continuera sans IDMC."
         )
+
+    # =========================================================================
+    # 2. Préparation
+    # =========================================================================
+
+    demandes = prepare_demandes(
+        demandes_raw
     )
 
-
-    # -------------------------------------------------------------------------
-    # Export table consolidée
-    # -------------------------------------------------------------------------
-
-    output_path = (
-        CONSOLIDATED_DIR
-        / "dataset_consolidated.csv"
+    decisions = prepare_decisions(
+        decisions_raw
     )
 
+    solutions = prepare_solutions(
+        solutions_raw
+    )
 
-    consolidated.to_csv(
-        output_path,
+    countries = prepare_country_dimension(
+        pays_raw
+    )
+
+    origin_dim = build_origin_dimension(
+        countries
+    )
+
+    asylum_dim = build_asylum_dimension(
+        countries
+    )
+
+    idmc_context = None
+
+    if idmc_raw is not None:
+        idmc_context = prepare_idmc_context(
+            idmc_raw
+        )
+
+    # =========================================================================
+    # 3. Dataset consolidé détaillé
+    # =========================================================================
+
+    detailed = build_detailed_dataset(
+        demandes=demandes,
+        decisions=decisions,
+        solutions=solutions,
+        origin_dim=origin_dim,
+        asylum_dim=asylum_dim,
+        idmc_context=idmc_context,
+    )
+
+    # Vérification critique :
+    # la consolidation ne doit pas multiplier les lignes.
+    if len(detailed) != len(demandes):
+        raise ValueError(
+            "Le dataset détaillé n'a pas conservé "
+            "le nombre de lignes de demandes."
+        )
+
+    add_audit(
+        dataset="consolidation",
+        check="detailed_row_count",
+        status="OK",
+        count=len(detailed),
+        details=(
+            "Nombre de lignes identique à la table demandes."
+        ),
+    )
+
+    # =========================================================================
+    # 4. Dataset analytique pays d'asile × année
+    # =========================================================================
+
+    asylum_country_year = build_asylum_country_year(
+        demandes=demandes,
+        asylum_dim=asylum_dim,
+    )
+
+    # =========================================================================
+    # 5. Exports
+    # =========================================================================
+
+    detailed.to_csv(
+        OUTPUT_DETAIL,
         index=False,
     )
 
-
-    # -------------------------------------------------------------------------
-    # Export audit
-    # -------------------------------------------------------------------------
-
-    audit_columns = [
-        "source",
-        "rule",
-        "status",
-        "rows_before",
-        "rows_after",
-        "message",
-    ]
-
-
-    audit_df = pd.DataFrame(
-        audit_records,
-        columns=audit_columns,
+    asylum_country_year.to_csv(
+        OUTPUT_COUNTRY_YEAR,
+        index=False,
     )
 
+    # =========================================================================
+    # 6. Résumé
+    # =========================================================================
 
-    audit_df.to_csv(
+    summary = build_summary(
+        demandes_raw=demandes_raw,
+        detailed=detailed,
+        asylum_country_year=asylum_country_year,
+    )
+
+    SUMMARY_FILE = (
         PROCESSED_DIR
-        / "consolidation_audit_log.csv",
-        index=False,
+        / "consolidation_demandes_summary.csv"
     )
-
-
-    # -------------------------------------------------------------------------
-    # Résumé
-    # -------------------------------------------------------------------------
-
-    summary = pd.DataFrame(
-        [
-            {
-                "rows":
-                len(consolidated),
-
-                "columns":
-                len(
-                    consolidated.columns
-                ),
-
-                "countries":
-                consolidated[
-                    "coo_id"
-                ].nunique(
-                    dropna=True
-                ),
-
-                "min_year":
-                consolidated[
-                    "year"
-                ].min(),
-
-                "max_year":
-                consolidated[
-                    "year"
-                ].max(),
-
-                "duplicate_year_country":
-                int(
-                    consolidated
-                    .duplicated(
-                        [
-                            "year",
-                            "coo_id",
-                        ]
-                    )
-                    .sum()
-                ),
-
-                "idmc_missing":
-                int(
-                    consolidated[
-                        "idmc_total"
-                    ]
-                    .isna()
-                    .sum()
-                ),
-
-                "asylum_data_available_pct":
-                round(
-                    consolidated[
-                        "has_asylum_data"
-                    ]
-                    .mean()
-                    * 100,
-                    2,
-                ),
-
-                "decisions_data_available_pct":
-                round(
-                    consolidated[
-                        "has_decisions_data"
-                    ]
-                    .mean()
-                    * 100,
-                    2,
-                ),
-
-                "solutions_data_available_pct":
-                round(
-                    consolidated[
-                        "has_solutions_data"
-                    ]
-                    .mean()
-                    * 100,
-                    2,
-                ),
-            }
-        ]
-    )
-
 
     summary.to_csv(
-        PROCESSED_DIR
-        / "consolidation_summary.csv",
+        SUMMARY_FILE,
         index=False,
     )
 
+    # =========================================================================
+    # 7. Audit
+    # =========================================================================
+
+    audit_df = pd.DataFrame(
+        audit_log,
+        columns=AUDIT_COLUMNS,
+    )
+
+    audit_df.to_csv(
+        AUDIT_FILE,
+        index=False,
+    )
+
+    # =========================================================================
+    # 8. Logs finaux
+    # =========================================================================
 
     logger.info(
-        "Dataset consolidé créé : %s",
-        output_path,
+        "Demandes source           : %s lignes",
+        len(demandes_raw),
     )
 
     logger.info(
-        "=== Consolidation : terminée ==="
+        "Dataset consolidé détaillé : %s lignes",
+        len(detailed),
+    )
+
+    logger.info(
+        "Pays d'asile × année       : %s lignes",
+        len(asylum_country_year),
+    )
+
+    logger.info(
+        "Pays d'origine distincts   : %s",
+        detailed["coo_id"].nunique(
+            dropna=True
+        ),
+    )
+
+    logger.info(
+        "Pays d'asile distincts     : %s",
+        detailed["coa_id"].nunique(
+            dropna=True
+        ),
+    )
+
+    logger.info(
+        "Période                    : %s - %s",
+        detailed["year"].min(),
+        detailed["year"].max(),
+    )
+
+    logger.info(
+        "Dataset détaillé exporté   : %s",
+        OUTPUT_DETAIL,
+    )
+
+    logger.info(
+        "Dataset pays/année exporté : %s",
+        OUTPUT_COUNTRY_YEAR,
+    )
+
+    logger.info(
+        "Audit exporté              : %s",
+        AUDIT_FILE,
+    )
+
+    logger.info(
+        "Résumé exporté             : %s",
+        SUMMARY_FILE,
+    )
+
+    logger.info(
+        "=== Consolidation terminée ==="
     )
 
 

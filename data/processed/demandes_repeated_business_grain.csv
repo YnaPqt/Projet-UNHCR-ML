@@ -1,0 +1,3 @@
+_row_id,year,coo_id,coo_name,coo,coo_iso,coa_id,coa_name,coa,coa_iso,procedure_type,app_type,dec_level,app_pc,applied,_demand_row_id
+25027,2025,262,Unknown,UKN,UNK,44,Colombia,COL,COL,G,N,FI,C,89,25027
+69706,2025,262,Unknown,UKN,UNK,44,Colombia,COL,COL,G,N,FI,P,70,69706

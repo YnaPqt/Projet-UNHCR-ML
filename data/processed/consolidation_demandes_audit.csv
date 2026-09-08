@@ -1,0 +1,11 @@
+dataset,check,status,count,details
+demandes,unique_grain,WARNING,2,"['year', 'coo_id', 'coa_id', 'procedure_type', 'app_type', 'dec_level']"
+decisions_aggregated,unique_grain,OK,0,"['year', 'coo_id', 'coa_id', 'procedure_type', 'dec_level']"
+solutions_aggregated,unique_grain,OK,0,"['year', 'coo_id', 'coa_id']"
+join_decisions,left_join_row_count,OK,120597,"join=['year', 'coo_id', 'coa_id', 'procedure_type', 'dec_level'], validate=many_to_one"
+join_solutions,left_join_row_count,OK,120597,"join=['year', 'coo_id', 'coa_id'], validate=many_to_one"
+join_origin_country,left_join_row_count,OK,120597,"join=['coo_id'], validate=many_to_one"
+join_asylum_country,left_join_row_count,OK,120597,"join=['coa_id'], validate=many_to_one"
+join_idmc_context,left_join_row_count,OK,120597,"join=['year', 'coo_id'], validate=many_to_one"
+consolidation,detailed_row_count,OK,120597,Nombre de lignes identique à la table demandes.
+join_asylum_country_year_dimension,left_join_row_count,OK,3807,"join=['coa_id'], validate=many_to_one"
