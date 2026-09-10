@@ -235,13 +235,17 @@ def prepare_demandes(df):
     """
     Conserve les demandes au grain détaillé.
 
-    Grain candidat :
+    Grain métier :
         year
         + coo_id
         + coa_id
         + procedure_type
         + app_type
         + dec_level
+        + app_pc
+
+    app_pc est conservé dans la clé car il distingue réellement
+    certaines observations dans la source demandes.
 
     Aucune agrégation automatique n'est réalisée.
     """
@@ -252,6 +256,7 @@ def prepare_demandes(df):
         "procedure_type",
         "app_type",
         "dec_level",
+        "app_pc",
         "applied",
     ]
 
@@ -275,6 +280,7 @@ def prepare_demandes(df):
         "procedure_type",
         "app_type",
         "dec_level",
+        "app_pc",
     ]
 
     is_unique = check_unique(
@@ -797,15 +803,38 @@ def build_asylum_country_year(
     asylum_dim,
 ):
     """
-    Produit un dataset séparé pour les analyses métier :
+    Produit le dataset analytique au grain :
 
         year × coa_id
 
-    Exemple d'usage :
-        - pays d'asile les plus demandés ;
-        - évolution annuelle des demandes ;
-        - nombre de pays d'origine distincts.
+    Règle de gouvernance :
+    - coa_id = identifiant technique / métier du pays d'asile ;
+    - coa = code pays issu de la source demandes (code source, pas forcément ISO3) ;
+    - coa_iso = code ISO3 présent dans la source demandes ;
+    - asylum_country = libellé standardisé du référentiel pays ;
+    - asylum_iso = code ISO3 standardisé du référentiel pays.
+
+    Les informations géographiques ne sont jamais agrégées par first()
+    sans contrôle préalable de leur unicité.
     """
+
+    required = [
+        "year",
+        "coa_id",
+        "coo_id",
+        "applied",
+    ]
+
+    require_columns(
+        demandes,
+        required,
+        "demandes_for_country_year",
+    )
+
+    # -------------------------------------------------------------------------
+    # 1. Agrégation des mesures au grain year × coa_id
+    # -------------------------------------------------------------------------
+
     result = (
         demandes
         .groupby(
@@ -832,6 +861,92 @@ def build_asylum_country_year(
         )
     )
 
+    # -------------------------------------------------------------------------
+    # 2. Contrôle et ajout des codes/libellés présents dans la source demandes
+    # -------------------------------------------------------------------------
+
+    source_geo_candidates = [
+        "coa",
+        "coa_iso",
+        "coa_name",
+    ]
+
+    source_geo_cols = [
+        col
+        for col in source_geo_candidates
+        if col in demandes.columns
+    ]
+
+    if source_geo_cols:
+        source_geo = (
+            demandes[
+                ["coa_id"] + source_geo_cols
+            ]
+            .drop_duplicates()
+            .copy()
+        )
+
+        # Un coa_id ne doit pas correspondre à plusieurs codes/libellés source.
+        source_mapping_check = (
+            source_geo
+            .groupby(
+                "coa_id",
+                dropna=False,
+            )[source_geo_cols]
+            .nunique(
+                dropna=False
+            )
+        )
+
+        inconsistent_source_mapping = (
+            source_mapping_check.gt(1).any(axis=1)
+        )
+
+        if inconsistent_source_mapping.any():
+            bad_ids = (
+                inconsistent_source_mapping[
+                    inconsistent_source_mapping
+                ]
+                .index
+                .tolist()
+            )
+
+            (
+                source_geo[
+                    source_geo["coa_id"].isin(bad_ids)
+                ]
+                .sort_values("coa_id")
+                .to_csv(
+                    PROCESSED_DIR
+                    / "audit_asylum_source_mapping_inconsistent.csv",
+                    index=False,
+                )
+            )
+
+            raise ValueError(
+                "Incohérence dans la source demandes : "
+                "un même coa_id correspond à plusieurs valeurs "
+                f"parmi {source_geo_cols}. "
+                "Voir audit_asylum_source_mapping_inconsistent.csv"
+            )
+
+        source_geo = (
+            source_geo
+            .drop_duplicates("coa_id")
+        )
+
+        result = left_join_controlled(
+            left=result,
+            right=source_geo,
+            on=["coa_id"],
+            name="join_asylum_country_year_source_codes",
+            validate="many_to_one",
+        )
+
+    # -------------------------------------------------------------------------
+    # 3. Ajout de la dimension pays standardisée
+    # -------------------------------------------------------------------------
+
     result = left_join_controlled(
         left=result,
         right=asylum_dim,
@@ -840,59 +955,169 @@ def build_asylum_country_year(
         validate="many_to_one",
     )
 
-    return result
+    # -------------------------------------------------------------------------
+    # 4. Contrôles de cohérence source <-> référentiel
+    # -------------------------------------------------------------------------
 
+    # coa_iso et asylum_iso doivent être identiques quand les deux sont renseignés.
+    if {
+        "coa_iso",
+        "asylum_iso",
+    }.issubset(result.columns):
 
-# =============================================================================
-# RESUME DE CONSOLIDATION
-# =============================================================================
+        iso_mismatch = (
+            result["coa_iso"].notna()
+            & result["asylum_iso"].notna()
+            & result["coa_iso"].ne(result["asylum_iso"])
+        )
 
-def build_summary(
-    demandes_raw,
-    detailed,
-    asylum_country_year,
-):
-    """
-    Produit un résumé simple de la consolidation.
-    """
-    summary = pd.DataFrame(
+        mismatch_count = int(
+            iso_mismatch.sum()
+        )
+
+        add_audit(
+            dataset="asylum_country_year",
+            check="coa_iso_vs_asylum_iso",
+            status="OK" if mismatch_count == 0 else "WARNING",
+            count=mismatch_count,
+            details=(
+                "Comparaison du code ISO3 source demandes "
+                "avec le code ISO3 du référentiel pays."
+            ),
+        )
+
+        if mismatch_count > 0:
+            (
+                result.loc[
+                    iso_mismatch,
+                    [
+                        "year",
+                        "coa_id",
+                        "coa",
+                        "coa_iso",
+                        "asylum_iso",
+                        "coa_name",
+                        "asylum_country",
+                    ],
+                ]
+                .to_csv(
+                    PROCESSED_DIR
+                    / "audit_asylum_iso_mismatch.csv",
+                    index=False,
+                )
+            )
+
+    # coa_name et asylum_country doivent être identiques quand les deux existent.
+    if {
+        "coa_name",
+        "asylum_country",
+    }.issubset(result.columns):
+
+        name_mismatch = (
+            result["coa_name"].notna()
+            & result["asylum_country"].notna()
+            & result["coa_name"].str.strip().ne(
+                result["asylum_country"].str.strip()
+            )
+        )
+
+        mismatch_count = int(
+            name_mismatch.sum()
+        )
+
+        add_audit(
+            dataset="asylum_country_year",
+            check="coa_name_vs_asylum_country",
+            status="OK" if mismatch_count == 0 else "WARNING",
+            count=mismatch_count,
+            details=(
+                "Comparaison du libellé pays source demandes "
+                "avec le libellé du référentiel pays."
+            ),
+        )
+
+        if mismatch_count > 0:
+            (
+                result.loc[
+                    name_mismatch,
+                    [
+                        "year",
+                        "coa_id",
+                        "coa",
+                        "coa_iso",
+                        "coa_name",
+                        "asylum_iso",
+                        "asylum_country",
+                    ],
+                ]
+                .to_csv(
+                    PROCESSED_DIR
+                    / "audit_asylum_country_name_mismatch.csv",
+                    index=False,
+                )
+            )
+
+    # -------------------------------------------------------------------------
+    # 5. Contrôle d'unicité du dataset final
+    # -------------------------------------------------------------------------
+
+    check_unique(
+        result,
         [
-            {
-                "indicator": "demandes_source_rows",
-                "value": len(demandes_raw),
-            },
-            {
-                "indicator": "detailed_consolidated_rows",
-                "value": len(detailed),
-            },
-            {
-                "indicator": "asylum_country_year_rows",
-                "value": len(asylum_country_year),
-            },
-            {
-                "indicator": "detailed_unique_origin_countries",
-                "value": detailed["coo_id"].nunique(
-                    dropna=True
-                ),
-            },
-            {
-                "indicator": "detailed_unique_asylum_countries",
-                "value": detailed["coa_id"].nunique(
-                    dropna=True
-                ),
-            },
-            {
-                "indicator": "detailed_min_year",
-                "value": detailed["year"].min(),
-            },
-            {
-                "indicator": "detailed_max_year",
-                "value": detailed["year"].max(),
-            },
-        ]
+            "year",
+            "coa_id",
+        ],
+        "asylum_country_year",
+        "asylum_country_year_duplicate_grain.csv",
     )
 
-    return summary
+    # -------------------------------------------------------------------------
+    # 6. Ordre explicite des colonnes
+    # -------------------------------------------------------------------------
+
+    preferred_order = [
+        "year",
+        "coa_id",
+
+        # Informations source demandes
+        "coa",
+        "coa_iso",
+        "coa_name",
+
+        # Informations standardisées référentiel
+        "asylum_iso",
+        "asylum_iso2",
+        "asylum_country",
+        "asylum_country_fr",
+        "asylum_region",
+        "asylum_region_fr",
+        "asylum_major_area",
+        "asylum_major_area_fr",
+
+        # Mesures métier
+        "asylum_applications",
+        "origin_countries",
+        "demand_rows",
+    ]
+
+    ordered = [
+        col
+        for col in preferred_order
+        if col in result.columns
+    ]
+
+    remaining = [
+        col
+        for col in result.columns
+        if col not in ordered
+    ]
+
+    result = result[
+        ordered + remaining
+    ]
+
+    return result
+
 
 
 # =============================================================================
@@ -1031,28 +1256,9 @@ def main():
         index=False,
     )
 
-    # =========================================================================
-    # 6. Résumé
-    # =========================================================================
-
-    summary = build_summary(
-        demandes_raw=demandes_raw,
-        detailed=detailed,
-        asylum_country_year=asylum_country_year,
-    )
-
-    SUMMARY_FILE = (
-        PROCESSED_DIR
-        / "consolidation_demandes_summary.csv"
-    )
-
-    summary.to_csv(
-        SUMMARY_FILE,
-        index=False,
-    )
 
     # =========================================================================
-    # 7. Audit
+    # 6. Audit
     # =========================================================================
 
     audit_df = pd.DataFrame(
@@ -1066,7 +1272,7 @@ def main():
     )
 
     # =========================================================================
-    # 8. Logs finaux
+    # 7. Logs finaux
     # =========================================================================
 
     logger.info(
@@ -1119,10 +1325,6 @@ def main():
         AUDIT_FILE,
     )
 
-    logger.info(
-        "Résumé exporté             : %s",
-        SUMMARY_FILE,
-    )
 
     logger.info(
         "=== Consolidation terminée ==="
