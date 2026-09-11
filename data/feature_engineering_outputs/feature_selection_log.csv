@@ -1,96 +1,80 @@
-column,decision,reason
-_row_id,DROP_TECHNICAL,Identifiant ou métadonnée technique
-year,KEEP,Feature retenue pour le modèle V1
-coo_id,KEEP,Feature retenue pour le modèle V1
-coo_name,DROP_REDUNDANT,Référentiel descriptif redondant
-coo,DROP_REDUNDANT,Référentiel descriptif redondant
-coo_iso,DROP_REDUNDANT,Référentiel descriptif redondant
-coa_id,KEEP,Feature retenue pour le modèle V1
-coa_name,DROP_REDUNDANT,Référentiel descriptif redondant
-coa,DROP_REDUNDANT,Référentiel descriptif redondant
-coa_iso,DROP_REDUNDANT,Référentiel descriptif redondant
-procedure_type,KEEP,Feature retenue pour le modèle V1
-app_type,KEEP,Feature retenue pour le modèle V1
-dec_level,KEEP,Feature retenue pour le modèle V1
-app_pc,KEEP,Feature retenue pour le modèle V1
-applied,KEEP,Feature retenue pour le modèle V1
-_demand_row_id,DROP_TECHNICAL,Identifiant ou métadonnée technique
-has_asylum_application_data,DROP_LOW_VALUE,Indicateur non retenu dans le Feature Set V1
-decisions_recognized,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-decisions_other,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-decisions_rejected,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-decisions_closed,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-decisions_total,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-decisions_source_rows,DROP_TECHNICAL,Identifiant ou métadonnée technique
-recognition_rate,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-rejection_rate,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-has_decisions_data,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-returned_refugees,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
-resettlement,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
-naturalisation,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
-returned_idps,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
-solutions_source_rows,DROP_TECHNICAL,Identifiant ou métadonnée technique
-has_solutions_data,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
-origin_iso,DROP_REDUNDANT,Référentiel descriptif redondant
-origin_iso2,DROP_REDUNDANT,Référentiel descriptif redondant
-origin_country,DROP_REDUNDANT,Référentiel descriptif redondant
-origin_country_fr,DROP_REDUNDANT,Référentiel descriptif redondant
-origin_region,KEEP,Feature retenue pour le modèle V1
-origin_region_fr,DROP_REDUNDANT,Référentiel descriptif redondant
-origin_major_area,DROP_REDUNDANT,Référentiel descriptif redondant
-origin_major_area_fr,DROP_REDUNDANT,Référentiel descriptif redondant
-asylum_iso,DROP_REDUNDANT,Référentiel descriptif redondant
-asylum_iso2,DROP_REDUNDANT,Référentiel descriptif redondant
-asylum_country,DROP_REDUNDANT,Référentiel descriptif redondant
-asylum_country_fr,DROP_REDUNDANT,Référentiel descriptif redondant
-asylum_region,KEEP,Feature retenue pour le modèle V1
-asylum_region_fr,DROP_REDUNDANT,Référentiel descriptif redondant
-asylum_major_area,DROP_REDUNDANT,Référentiel descriptif redondant
-asylum_major_area_fr,DROP_REDUNDANT,Référentiel descriptif redondant
-idmc_total_origin,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-has_idmc_data,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
-applied_lag1,KEEP,Feature retenue pour le modèle V1
-applied_lag2,KEEP,Feature retenue pour le modèle V1
-absolute_change_past_1,KEEP,Feature retenue pour le modèle V1
-absolute_change_past_2,KEEP,Feature retenue pour le modèle V1
-growth_past_1,KEEP,Feature retenue pour le modèle V1
-growth_past_2,KEEP,Feature retenue pour le modèle V1
-two_consecutive_increases,KEEP,Feature retenue pour le modèle V1
-applied_mean_3y,KEEP,Feature retenue pour le modèle V1
-applied_std_3y,KEEP,Feature retenue pour le modèle V1
-decisions_recognized_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_other_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_rejected_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_closed_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_total_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-recognition_rate_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-rejection_rate_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-idmc_total_origin_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-has_decisions_data_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-has_idmc_data_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
-refugee_recognition_rate_lag1,KEEP,Feature retenue pour le modèle V1
-protection_rate_lag1,KEEP,Feature retenue pour le modèle V1
-decisions_recognized_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_other_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_rejected_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_closed_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_total_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-recognition_rate_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-rejection_rate_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-idmc_total_origin_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-has_decisions_data_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-has_idmc_data_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
-decisions_recognized_lag1,KEEP,Feature retenue pour le modèle V1
-decisions_other_lag1,KEEP,Feature retenue pour le modèle V1
-decisions_rejected_lag1,KEEP,Feature retenue pour le modèle V1
-decisions_closed_lag1,KEEP,Feature retenue pour le modèle V1
-decisions_total_lag1,KEEP,Feature retenue pour le modèle V1
-recognition_rate_lag1,DROP_UNUSED,Non retenue dans le Feature Set V1
-rejection_rate_lag1,KEEP,Feature retenue pour le modèle V1
-idmc_total_origin_lag1,KEEP,Feature retenue pour le modèle V1
-has_decisions_data_lag1,KEEP,Feature retenue pour le modèle V1
-has_idmc_data_lag1,KEEP,Feature retenue pour le modèle V1
-applied_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
-year_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
-growth_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
-hausse_critique_demandes_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
+feature,decision,justification
+_row_id,DROP_TECHNICAL,"Traçabilité technique, sans valeur métier prédictive."
+year,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+coo_id,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+coo_name,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+coo,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+coo_iso,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+coa_id,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+coa_name,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+coa,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+coa_iso,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+procedure_type,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+app_type,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+dec_level,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+app_pc,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+applied,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+_demand_row_id,DROP_TECHNICAL,"Traçabilité technique, sans valeur métier prédictive."
+has_asylum_application_data,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+decisions_recognized,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+decisions_other,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+decisions_rejected,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+decisions_closed,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+decisions_total,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+decisions_source_rows,DROP_TECHNICAL,"Traçabilité technique, sans valeur métier prédictive."
+recognition_rate,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+rejection_rate,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+has_decisions_data,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+returned_refugees,DROP_MISSINGNESS,Très forte incomplétude et lien indirect avec la cible V1.
+resettlement,DROP_MISSINGNESS,Très forte incomplétude et lien indirect avec la cible V1.
+naturalisation,DROP_MISSINGNESS,Très forte incomplétude et lien indirect avec la cible V1.
+returned_idps,DROP_MISSINGNESS,Très forte incomplétude et lien indirect avec la cible V1.
+solutions_source_rows,DROP_TECHNICAL,"Traçabilité technique, sans valeur métier prédictive."
+has_solutions_data,DROP_MISSINGNESS,Très forte incomplétude et lien indirect avec la cible V1.
+origin_iso,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+origin_iso2,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+origin_country,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+origin_country_fr,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+origin_region,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+origin_region_fr,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+origin_major_area,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+origin_major_area_fr,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+asylum_iso,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+asylum_iso2,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+asylum_country,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+asylum_country_fr,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+asylum_region,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+asylum_region_fr,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+asylum_major_area,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+asylum_major_area_fr,DROP_REDUNDANT_OR_UNUSED,"Doublon descriptif, référentiel ou feature non nécessaire à la V2."
+idmc_total_origin,DROP_T0_UNCERTAIN,Version courante non garantie à T ; version IDMC T-1 préférée.
+has_idmc_data,DROP_T0_UNCERTAIN,Version courante non garantie à T ; version IDMC T-1 préférée.
+applied_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+applied_lag2,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+log_applied,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+absolute_change_past_1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+absolute_change_past_2,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+growth_past_1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+growth_past_2,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+applied_mean_3y,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+applied_std_3y,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+two_consecutive_increases,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+origin_applied_total_t,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+asylum_applied_total_t,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+segment_share_origin_t,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+segment_share_asylum_t,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+log_origin_applied_total_t,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+log_asylum_applied_total_t,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+idmc_total_origin_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+origin_applied_total_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+log_idmc_total_origin_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+idmc_pressure_ratio_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+decisions_total_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+decisions_recognized_lag1,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+decisions_other_lag1,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+decisions_rejected_lag1,DROP_REDUNDANT_OR_T0,Décisions courantes ou composantes détaillées redondantes ; contexte synthétique T-1 préféré.
+protection_rate_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+rejection_rate_lag1,KEEP,"Feature V2 retenue : disponible à T et pertinente pour volume, dynamique, contexte ou segmentation."
+applied_t1,DROP_LEAKAGE,Information future ou cible.
+growth_t1,DROP_LEAKAGE,Information future ou cible.
+hausse_critique_demandes_t1,DROP_LEAKAGE,Information future ou cible.
