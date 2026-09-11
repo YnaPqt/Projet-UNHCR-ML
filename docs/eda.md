@@ -86,7 +86,7 @@ Aucune variable numérique isolée n'est fortement corrélée à la cible ;
 `applied` est autour de **−0,13**. En revanche, certaines features sont
 fortement corrélées entre elles : `applied` / `applied_lag1` = **0,86**,
 `applied` / `decisions_total` = **0,87**, `refugee_recognition_rate` /
-`protection_rate` ≈ **0,90**.
+`protection_rate` = **0,90**.
 
 La prédiction devra donc rechercher la valeur dans une combinaison de
 facteurs temporels, géographiques, catégoriels et contextuels.
