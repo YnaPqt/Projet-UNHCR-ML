@@ -1,0 +1,96 @@
+column,decision,reason
+_row_id,DROP_TECHNICAL,Identifiant ou métadonnée technique
+year,KEEP,Feature retenue pour le modèle V1
+coo_id,KEEP,Feature retenue pour le modèle V1
+coo_name,DROP_REDUNDANT,Référentiel descriptif redondant
+coo,DROP_REDUNDANT,Référentiel descriptif redondant
+coo_iso,DROP_REDUNDANT,Référentiel descriptif redondant
+coa_id,KEEP,Feature retenue pour le modèle V1
+coa_name,DROP_REDUNDANT,Référentiel descriptif redondant
+coa,DROP_REDUNDANT,Référentiel descriptif redondant
+coa_iso,DROP_REDUNDANT,Référentiel descriptif redondant
+procedure_type,KEEP,Feature retenue pour le modèle V1
+app_type,KEEP,Feature retenue pour le modèle V1
+dec_level,KEEP,Feature retenue pour le modèle V1
+app_pc,KEEP,Feature retenue pour le modèle V1
+applied,KEEP,Feature retenue pour le modèle V1
+_demand_row_id,DROP_TECHNICAL,Identifiant ou métadonnée technique
+has_asylum_application_data,DROP_LOW_VALUE,Indicateur non retenu dans le Feature Set V1
+decisions_recognized,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+decisions_other,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+decisions_rejected,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+decisions_closed,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+decisions_total,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+decisions_source_rows,DROP_TECHNICAL,Identifiant ou métadonnée technique
+recognition_rate,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+rejection_rate,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+has_decisions_data,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+returned_refugees,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
+resettlement,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
+naturalisation,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
+returned_idps,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
+solutions_source_rows,DROP_TECHNICAL,Identifiant ou métadonnée technique
+has_solutions_data,DROP_MISSINGNESS,Variable de solution trop incomplète pour la V1
+origin_iso,DROP_REDUNDANT,Référentiel descriptif redondant
+origin_iso2,DROP_REDUNDANT,Référentiel descriptif redondant
+origin_country,DROP_REDUNDANT,Référentiel descriptif redondant
+origin_country_fr,DROP_REDUNDANT,Référentiel descriptif redondant
+origin_region,KEEP,Feature retenue pour le modèle V1
+origin_region_fr,DROP_REDUNDANT,Référentiel descriptif redondant
+origin_major_area,DROP_REDUNDANT,Référentiel descriptif redondant
+origin_major_area_fr,DROP_REDUNDANT,Référentiel descriptif redondant
+asylum_iso,DROP_REDUNDANT,Référentiel descriptif redondant
+asylum_iso2,DROP_REDUNDANT,Référentiel descriptif redondant
+asylum_country,DROP_REDUNDANT,Référentiel descriptif redondant
+asylum_country_fr,DROP_REDUNDANT,Référentiel descriptif redondant
+asylum_region,KEEP,Feature retenue pour le modèle V1
+asylum_region_fr,DROP_REDUNDANT,Référentiel descriptif redondant
+asylum_major_area,DROP_REDUNDANT,Référentiel descriptif redondant
+asylum_major_area_fr,DROP_REDUNDANT,Référentiel descriptif redondant
+idmc_total_origin,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+has_idmc_data,DROP_T0_UNCERTAIN,Disponibilité à T non garantie ; version lag1 privilégiée
+applied_lag1,KEEP,Feature retenue pour le modèle V1
+applied_lag2,KEEP,Feature retenue pour le modèle V1
+absolute_change_past_1,KEEP,Feature retenue pour le modèle V1
+absolute_change_past_2,KEEP,Feature retenue pour le modèle V1
+growth_past_1,KEEP,Feature retenue pour le modèle V1
+growth_past_2,KEEP,Feature retenue pour le modèle V1
+two_consecutive_increases,KEEP,Feature retenue pour le modèle V1
+applied_mean_3y,KEEP,Feature retenue pour le modèle V1
+applied_std_3y,KEEP,Feature retenue pour le modèle V1
+decisions_recognized_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_other_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_rejected_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_closed_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_total_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+recognition_rate_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+rejection_rate_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+idmc_total_origin_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+has_decisions_data_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+has_idmc_data_lag1_x,DROP_UNUSED,Non retenue dans le Feature Set V1
+refugee_recognition_rate_lag1,KEEP,Feature retenue pour le modèle V1
+protection_rate_lag1,KEEP,Feature retenue pour le modèle V1
+decisions_recognized_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_other_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_rejected_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_closed_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_total_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+recognition_rate_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+rejection_rate_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+idmc_total_origin_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+has_decisions_data_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+has_idmc_data_lag1_y,DROP_UNUSED,Non retenue dans le Feature Set V1
+decisions_recognized_lag1,KEEP,Feature retenue pour le modèle V1
+decisions_other_lag1,KEEP,Feature retenue pour le modèle V1
+decisions_rejected_lag1,KEEP,Feature retenue pour le modèle V1
+decisions_closed_lag1,KEEP,Feature retenue pour le modèle V1
+decisions_total_lag1,KEEP,Feature retenue pour le modèle V1
+recognition_rate_lag1,DROP_UNUSED,Non retenue dans le Feature Set V1
+rejection_rate_lag1,KEEP,Feature retenue pour le modèle V1
+idmc_total_origin_lag1,KEEP,Feature retenue pour le modèle V1
+has_decisions_data_lag1,KEEP,Feature retenue pour le modèle V1
+has_idmc_data_lag1,KEEP,Feature retenue pour le modèle V1
+applied_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
+year_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
+growth_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
+hausse_critique_demandes_t1,DROP_LEAKAGE,"Information future / cible, interdite dans X"
