@@ -304,7 +304,7 @@ l'IA de construire une comparaison progressive entre :
 1.  une **baseline naïve** ;
 2.  une **régression logistique** ;
 3.  un **Random Forest** ;
-4.  un **HistGradientBoosting**.
+4.  un **XGBoosting**.
 
 La baseline était importante : elle permet de vérifier que le Machine
 Learning apporte réellement quelque chose par rapport à une stratégie
