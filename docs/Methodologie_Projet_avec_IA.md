@@ -281,14 +281,14 @@ représentent une classe minoritaire.
 
 J'ai donc évalué les modèles avec plusieurs métriques :
 
-  Métrique            Ce que je cherche à mesurer
-  ------------------- --------------------------------------------------------
-  Recall              Combien de vraies alertes mon modèle détecte
-  Precision           Parmi mes alertes, combien sont réellement pertinentes
-  F1-score            Le compromis entre Recall et Precision
-  PR-AUC              La capacité à distinguer la classe rare
-  ROC-AUC             La capacité globale de discrimination
-  Balanced Accuracy   La performance en tenant compte des deux classes
+  |Métrique        |    Ce que je cherche à mesurer|
+  | --- | --- |
+ | Recall         |     Combien de vraies alertes mon modèle détecte|
+ | Precision       |    Parmi mes alertes, combien sont réellement pertinentes|
+ | F1-score        |    Le compromis entre Recall et Precision|
+|  PR-AUC    |          La capacité à distinguer la classe rare|
+|  ROC-AUC        |     La capacité globale de discrimination|
+ | Balanced Accuracy |  La performance en tenant compte des deux classes|
 
 Le choix des métriques a donc été lié au besoin opérationnel : **rater
 une alerte importante et générer une fausse alerte n'ont pas le même
