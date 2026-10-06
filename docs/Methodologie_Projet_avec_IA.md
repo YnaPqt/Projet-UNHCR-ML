@@ -312,12 +312,12 @@ très simple.
 
 J'ai également imposé un **split temporel**, et non aléatoire :
 
-  Jeu          Période
-  ------------ ----------------------------
-  Train        2000--2018
-  Validation   2019--2021
-  Test         2022--2024
-  2025         hors évaluation supervisée
+  |Jeu    |      Période|
+  |---|---|
+  |Train |       2000--2018|
+ | Validation |  2019--2021|
+ | Test |        2022--2024|
+  |2025      |   hors évaluation supervisée|
 
 Ce choix reproduit mieux la situation réelle : apprendre sur le passé
 pour prédire le futur.
@@ -418,17 +418,17 @@ projet.
 
 ## 17. Répartition finale des responsabilités
 
-  Mon rôle                     Rôle de l'IA
-  ---------------------------- -------------------------------------
-  Définir le besoin métier     Reformuler le besoin
-  Fixer les règles             Proposer une implémentation
-  Challenger les choix         Expliquer les alternatives
-  Valider les données          Produire les contrôles
-  Valider les features         Proposer et coder les features
-  Arbitrer les métriques       Calculer et expliquer les métriques
-  Choisir l'usage du score     Construire le scoring
-  Valider les résultats        Aider à les interpréter
-  Prendre la décision finale   Assister la décision
+ | Mon rôle              |       Rôle de l'IA|
+  |---|---|
+|  Définir le besoin métier |    Reformuler le besoin|
+ | Fixer les règles          |   Proposer une implémentation|
+ | Challenger les choix      |  Expliquer les alternatives|
+  |Valider les données        |  Produire les contrôles|
+ | Valider les features       |  Proposer et coder les features|
+ | Arbitrer les métriques     |  Calculer et expliquer les métriques|
+ | Choisir l'usage du score   |  Construire le scoring|
+ | Valider les résultats      |  Aider à les interpréter|
+ | Prendre la décision finale |  Assister la décision|
 
 ------------------------------------------------------------------------
 
