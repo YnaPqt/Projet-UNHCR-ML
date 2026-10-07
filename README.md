@@ -37,19 +37,14 @@ tiers.
 
 Le périmètre comprend plusieurs familles de données :
 
-  -----------------------------------------------------------------------
-  |Source                     |      Contenu|
-  |---|---|
-   | **UNHCR --- End-year population figures**   |  Stocks annuels : réfugiés, déplacés internes, demandeurs d'asile, etc.|
-
+|Source                     |      Contenu|
+|---|---|
+| **UNHCR --- End-year population figures**   |  Stocks annuels : réfugiés, déplacés internes, demandeurs d'asile, etc.|
 |  **UNHCR --- Solutions**    |        Retours, réinstallations, naturalisations et retours de déplacés internes|
-
 |  **IDMC**                 |           Déplacements internes liés notamment aux conflits et violences|
+| **UNRWA**                  |         Réfugiés de Palestine sous mandat de l'UNRWA|
+|**Demographics**           |         Informations démographiques disponibles pour certaines sources|
 
- | **UNRWA**                  |         Réfugiés de Palestine sous mandat de l'UNRWA|
-
-  |**Demographics**           |         Informations démographiques disponibles pour certaines sources|
-  -----------------------------------------------------------------------
 
 Les données sont principalement ventilées par année, type de population,
 pays/territoire d'origine et pays/territoire d'asile. La période de
