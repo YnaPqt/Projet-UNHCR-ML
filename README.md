@@ -52,22 +52,24 @@ travail couvre **2000 à 2025**.
 
 ### Principaux codes de population
 
-  Code    Signification
-  ------- --------------------------------------------------
-  `REF`   Refugees
-  `ROC`   People in refugee-like situation
-  `ASY`   Asylum-seekers
-  `OIP`   Other people in need of international protection
-  `IDP`   Internally displaced persons
-  `IOC`   People in IDP-like situation
-  `STA`   Stateless people
-  `OOC`   Others of concern
-  `HST`   Host community
+   | Code    |  Signification | 
+  |--- | ----  | 
+  | `REF`  |   Refugees|
+  | `ROC`   |People in refugee-like situation|
+  | `ASY`  |Asylum-seekers|
+  |`OIP`  |Other people in need of international protection|
+  |`IDP` |Internally displaced persons|
+  |`IOC` |People in IDP-like situation|
+  |`STA` |Stateless people|
+  |`OOC` |Others of concern|
+  |`HST` |Host community|
 
 ### Solutions
 
-`RET` = Returned refugees · `RST` = Resettled refugees · `NAT` =
-Naturalized refugees · `RDP` = Returned IDPs.
+`RET` = Returned refugees · 
+`RST` = Resettled refugees · 
+`NAT` = Naturalized refugees · 
+`RDP` = Returned IDPs.
 
 Le HCR utilise également certains codes ISO3 spécifiques, notamment
 `UKN` pour *Various/unknown* et `STA` pour *Stateless*.
