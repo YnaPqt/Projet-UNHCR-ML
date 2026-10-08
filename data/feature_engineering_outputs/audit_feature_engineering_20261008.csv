@@ -1,0 +1,8 @@
+control,n_rows,action
+invalid_year,0,conserved_and_flagged
+invalid_applied,0,conserved_and_flagged
+coo_country_mapping_unmatched_ids,0,logged_and_preserved
+coa_country_mapping_unmatched_ids,0,logged_and_preserved
+rows_excluded_from_temporal_computation,0,logged_not_silently_deleted
+origin_region_conflicts,0,stop_if_conflict
+asylum_region_conflicts,0,stop_if_conflict

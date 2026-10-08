@@ -5,7 +5,7 @@
 L'EDA vise à comprendre les dynamiques historiques des demandes d'asile
 avant toute modélisation et à vérifier la faisabilité de la question
 prédictive : **peut-on prédire qu'un segment connaîtra une hausse des
-demandes supérieure à 15 % à T+1 ?**
+demandes supérieure à 30 % à T+1 ?**
 
 Elle couvre la qualité des données, les évolutions temporelles, les
 origines, pays d'asile, corridors origine → accueil, décisions,
