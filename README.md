@@ -209,14 +209,14 @@ futur**.
 L'événement d'alerte étant minoritaire, l'accuracy seule n'est pas
 suffisante.
 
-  Métrique                Lecture
-  ----------------------- ------------------------------------------------
-  **Recall**              part des vraies alertes détectées
-  **Precision**           part des alertes émises réellement pertinentes
-  **F1-score**            compromis Precision / Recall
-  **PR-AUC**              capacité à distinguer la classe minoritaire
-  **ROC-AUC**             capacité globale de discrimination
-  **Balanced Accuracy**   performance équilibrée entre les classes
+ | Métrique     |           Lecture |
+  |---|---|
+  |**Recall**   |           part des vraies alertes détectées|
+  |**Precision**          |part des alertes émises réellement pertinentes|
+  |**F1-score**           | compromis Precision / Recall|
+  |**PR-AUC**             | capacité à distinguer la classe minoritaire|
+  |**ROC-AUC**            | capacité globale de discrimination|
+  |**Balanced Accuracy**  | performance équilibrée entre les classes|
 
 Le choix du modèle et du seuil doit tenir compte du coût opérationnel
 des **faux positifs** et des **faux négatifs**.
